@@ -22,8 +22,8 @@ void setup() {
   adc0 = ads1115.readADC_SingleEnded(0);
   adc1 = ads1115.readADC_SingleEnded(1);
 
-  M5.Lcd.drawString(String(adc0), 0, 180, 1);
-  M5.Lcd.drawString(String(adc1), 0, 210, 1);
+  M5.Lcd.drawString(String(adc0), 0, 120, 1);
+  M5.Lcd.drawString(String(adc1), 0, 150, 1);
 
   //AD5665R DAC
   //TURN ON INTERNAL REFRENCE VOLTAGE
@@ -60,4 +60,25 @@ void setup() {
 The loop() function is an endless loop, in which the program will continue to run repeatedly */
 void loop() {
   M5.update();
+
+  
+  //TEST ADS1115 ADC AND AD5665R DAC SCALABILITY
+  int testadc0 = ads1115.readADC_SingleEnded(0);
+  int testadc1 = ads1115.readADC_SingleEnded(1);
+
+  M5.Lcd.drawString(String(testadc0 * 2), 0, 180, 1);
+  M5.Lcd.drawString(String(testadc1 * 2), 0, 210, 1);
+
+  Wire.beginTransmission(0x1f);
+  Wire.write(byte(0));
+  Wire.write(byte(int(testadc0 * 2) >> 8));
+  Wire.write(byte(int(testadc0 * 2)));
+  Wire.endTransmission();
+
+  Wire.beginTransmission(0x1f);
+  Wire.write(byte(1));
+  Wire.write(byte(int(testadc1 * 2) >> 8));
+  Wire.write(byte(int(testadc1 * 2)));
+  Wire.endTransmission();
+  
 }
