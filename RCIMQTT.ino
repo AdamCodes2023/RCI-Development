@@ -15,6 +15,7 @@ int pcfr0Prev = 0;
 int pcfr1Prev = 0;
 
 Adafruit_PCF8574 pcfw1;
+Adafruit_PCF8574 pcfw2;
 
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
@@ -94,6 +95,12 @@ void setup() {
   pcfw1.pinMode(1, OUTPUT);
   pcfw1.digitalWrite(0, true);
   pcfw1.digitalWrite(1, true);
+
+  pcfw2.begin(0x3a, &Wire);
+  pcfw2.pinMode(0, OUTPUT);
+  pcfw2.pinMode(1, OUTPUT);
+  pcfw2.digitalWrite(0, true);
+  pcfw2.digitalWrite(1, true);
   
   /*
   //SCAN I2C BUS
