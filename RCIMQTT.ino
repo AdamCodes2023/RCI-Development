@@ -3,11 +3,16 @@
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
 #include <Adafruit_MCP4728.h>
+#include <Adafruit_PCF8574.h>
 
 Adafruit_ADS1115 ads1115;
 int16_t adc0, adc1, adc2, adc3;
 
 Adafruit_MCP4728 mcp;
+
+Adafruit_PCF8574 pcfr;
+int pcfr0Prev = 0;
+int pcfr1Prev = 0;
 
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
@@ -70,6 +75,18 @@ void setup() {
   Wire.write(byte(int(65535)));
   Wire.endTransmission();
 
+  pcfr.begin(0x38, &Wire);
+  pcfr.pinMode(0, INPUT_PULLUP);
+  pcfr.pinMode(1, INPUT_PULLUP);
+  pcfr.digitalWrite(0, true);
+  pcfr.digitalWrite(1, true);
+
+  pcfr0Prev = int(pcfr.digitalRead(0));
+  pcfr1Prev = int(pcfr.digitalRead(1));
+
+  M5.Lcd.drawString(String(pcfr0Prev), 0, 60, 1);
+  M5.Lcd.drawString(String(pcfr1Prev), 0, 90, 1);
+  
   /*
   //SCAN I2C BUS
   byte error, address;
