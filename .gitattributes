@@ -1,0 +1,4 @@
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+RCI-CEL-XXX/chariot_windows_2.8.1/lib/runtime/jdk17.0.15_6/lib/modules filter=lfs diff=lfs merge=lfs -text
