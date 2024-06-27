@@ -69,7 +69,51 @@ void setup() {
   Wire.write(byte(int(65535) >> 8));
   Wire.write(byte(int(65535)));
   Wire.endTransmission();
-  
+
+  /*
+  //SCAN I2C BUS
+  byte error, address;
+  int nDevices;
+
+  while (true) {
+    nDevices = 0;
+    for(address = 1; address < 127; address++ )
+    {
+      // The i2c_scanner uses the return value of
+      // the Write.endTransmisstion to see if
+      // a device did acknowledge to the address.
+      Wire.beginTransmission(address);
+      error = Wire.endTransmission();
+
+      if (error == 0)
+      {
+        M5.Lcd.print("I2C device found at address 0x");
+        if (address<16)
+          M5.Lcd.print("0");
+        M5.Lcd.print(address,HEX);
+        M5.Lcd.print("  !\n");
+
+        nDevices++;
+      }
+      else if (error==4)
+      {
+        M5.Lcd.print("Unknown error at address 0x");
+        if (address<16)
+          M5.Lcd.print("0");
+        M5.Lcd.print(address,HEX);
+        M5.Lcd.print("\n");
+      }
+    }
+    if (nDevices == 0)
+      M5.Lcd.print("No I2C devices found\n");
+    else
+      M5.Lcd.print("done\n");
+
+    delay(2000);           // wait 2 seconds for next scan
+    M5.Lcd.clear();
+    M5.Lcd.setCursor(0, 0);
+  }
+  */
 }
 
 /* After the program in the setup() function is executed, the program in the loop() function will be executed
