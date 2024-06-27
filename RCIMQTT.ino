@@ -153,6 +153,15 @@ The loop() function is an endless loop, in which the program will continue to ru
 void loop() {
   M5.update();
 
+  //TEST PCF8574 DIGITAL IO FUNCTIONALITY
+  int pcfr0Test = int(pcfr.digitalRead(0));
+  int pcfr1Test = int(pcfr.digitalRead(1));
+
+  pcfw1.digitalWrite(0, !bool(pcfr0Test));
+  pcfw1.digitalWrite(1, !bool(pcfr1Test));
+
+  pcfw2.digitalWrite(0, !bool(pcfr0Test));
+  //pcfw2.digitalWrite(1, !bool(pcfr1Test));
   
   //TEST ADS1115 ADC AND AD5665R DAC SCALABILITY
   int testadc0 = ads1115.readADC_SingleEnded(0);
