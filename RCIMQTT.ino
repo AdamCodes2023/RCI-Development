@@ -14,6 +14,8 @@ Adafruit_PCF8574 pcfr;
 int pcfr0Prev = 0;
 int pcfr1Prev = 0;
 
+Adafruit_PCF8574 pcfw1;
+
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
   delay(5000);
@@ -86,6 +88,12 @@ void setup() {
 
   M5.Lcd.drawString(String(pcfr0Prev), 0, 60, 1);
   M5.Lcd.drawString(String(pcfr1Prev), 0, 90, 1);
+
+  pcfw1.begin(0x39, &Wire);
+  pcfw1.pinMode(0, OUTPUT);
+  pcfw1.pinMode(1, OUTPUT);
+  pcfw1.digitalWrite(0, true);
+  pcfw1.digitalWrite(1, true);
   
   /*
   //SCAN I2C BUS
