@@ -2,9 +2,12 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
+#include <Adafruit_MCP4728.h>
 
 Adafruit_ADS1115 ads1115;
 int16_t adc0, adc1, adc2, adc3;
+
+Adafruit_MCP4728 mcp;
 
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
@@ -24,6 +27,19 @@ void setup() {
 
   M5.Lcd.drawString(String(adc0), 0, 120, 1);
   M5.Lcd.drawString(String(adc1), 0, 150, 1);
+
+  /*
+  //MCP4728 DAC
+  mcp.begin(0x60);
+  mcp.setChannelValue(MCP4728_CHANNEL_A, 0, MCP4728_VREF_INTERNAL,
+                      MCP4728_GAIN_2X);
+  mcp.setChannelValue(MCP4728_CHANNEL_B, 0, MCP4728_VREF_INTERNAL,
+                      MCP4728_GAIN_2X);
+  mcp.setChannelValue(MCP4728_CHANNEL_C, 0, MCP4728_VREF_INTERNAL,
+                      MCP4728_GAIN_2X);
+  mcp.setChannelValue(MCP4728_CHANNEL_D, 0, MCP4728_VREF_INTERNAL,
+                      MCP4728_GAIN_2X);
+  */
 
   //AD5665R DAC
   //TURN ON INTERNAL REFRENCE VOLTAGE
