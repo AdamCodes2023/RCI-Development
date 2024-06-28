@@ -14,6 +14,38 @@ const char broker[]    = "06e8c7b775f1454b8b94fcd788277596.s2.eu.hivemq.cloud";
 int        port        = 8883;
 const char willTopic[] = "arduino/will";
 
+String do1_feed = String("/feeds/do1");
+
+String do2_feed = String("/feeds/do2");
+
+String do3_feed = String("");
+
+String do4_feed = String("");
+
+String do5_feed = String("");
+
+String do6_feed = String("");
+
+String do7_feed = String("");
+
+String do8_feed = String("");
+
+String ao1_feed = String("/feeds/ao1");
+
+String ao2_feed = String("/feeds/ao2");
+
+String ao3_feed = String("");
+
+String ao4_feed = String("");
+
+String ao5_feed = String("");
+
+String ao6_feed = String("");
+
+String ao7_feed = String("");
+
+String ao8_feed = String("");
+
 EthernetClient ethClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
@@ -62,6 +94,60 @@ void reconnectMqtt() {
   M5.Lcd.print("You're connected to the MQTT broker!\n");
 
   delay(1000);
+
+  // subscribe to a topic
+  // the second parameter sets the QoS of the subscription,
+  // the the library supports subscribing at QoS 0, 1, or 2
+  int subscribeQos = 0;
+
+  if (!do1_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do1_feed, subscribeQos);
+  }
+  if (!do2_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do2_feed, subscribeQos);
+  }
+  if (!do3_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do3_feed, subscribeQos);
+  }
+  if (!do4_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do4_feed, subscribeQos);
+  }
+  if (!do5_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do5_feed, subscribeQos);
+  }
+  if (!do6_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do6_feed, subscribeQos);
+  }
+  if (!do7_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do7_feed, subscribeQos);
+  }
+  if (!do8_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(do8_feed, subscribeQos);
+  }
+  if (!ao1_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao1_feed, subscribeQos);
+  }
+  if (!ao2_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao2_feed, subscribeQos);
+  }
+  if (!ao3_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao3_feed, subscribeQos);
+  }
+  if (!ao4_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao4_feed, subscribeQos);
+  }
+  if (!ao5_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao5_feed, subscribeQos);
+  }
+  if (!ao6_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao6_feed, subscribeQos);
+  }
+  if (!ao7_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao7_feed, subscribeQos);
+  }
+  if (!ao8_feed.equalsIgnoreCase("")) {
+    mqttClient.subscribe(ao8_feed, subscribeQos);
+  }
 
   M5.Lcd.clear();
   M5.Lcd.setCursor(0, 0);
