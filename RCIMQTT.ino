@@ -131,6 +131,16 @@ void publishAI1() {
   delay(500);
 }
 
+void publishAI2() {
+  adc1 = ads1115.readADC_SingleEnded(1);
+  payload = String(adc1);
+
+  mqttClient.beginMessage(ai2_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
 void reconnectMqtt() {
   String willPayload = "oh no!";
   bool willRetain = true;
@@ -315,6 +325,7 @@ void setup() {
   publishDI1();
   publishDI2();
   publishAI1();
+  publishAI2();
   
   /*
   //SCAN I2C BUS
