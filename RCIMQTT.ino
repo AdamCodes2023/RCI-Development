@@ -156,6 +156,28 @@ void publishAll() {
   publishAI2();
 }
 
+void onMqttMessage(int messageSize) {
+  String message;
+  message = "";
+  // we received a message, print out the topic and contents
+
+  String topic;
+  topic = "";
+  topic = mqttClient.messageTopic();
+
+  // use the Stream interface to print the contents
+  while (mqttClient.available()) {
+    message += ((char)mqttClient.read());
+  }
+
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO1")) {
+    pcfw1.digitalWrite(0, !bool(message.toInt()));
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
+    pcfw1.digitalWrite(1, !bool(message.toInt()));
+  }
+}
+
 void reconnectMqtt() {
   String willPayload = "oh no!";
   bool willRetain = true;
@@ -186,6 +208,9 @@ void reconnectMqtt() {
   M5.Lcd.print("You're connected to the MQTT broker!\n");
 
   delay(1000);
+
+  // set the message receive callback
+  mqttClient.onMessage(onMqttMessage);
 
   // subscribe to a topic
   // the second parameter sets the QoS of the subscription,
