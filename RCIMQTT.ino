@@ -30,6 +30,44 @@ int pcfr1Prev = 0;
 Adafruit_PCF8574 pcfw1;
 Adafruit_PCF8574 pcfw2;
 
+bool reconnect = false;
+
+void reconnectMqtt() {
+  String willPayload = "oh no!";
+  bool willRetain = true;
+  int willQos = 0;
+
+  mqttClient.beginWill(willTopic, willPayload.length(), willRetain, willQos);
+  mqttClient.print(willPayload);
+  mqttClient.endWill();
+  
+  mqttClient.setUsernamePassword("ADAMMQTT3","Tennis19");
+  
+  if (!reconnect) {
+    M5.Lcd.print("Attempting to connect to the MQTT broker:\n");
+    M5.Lcd.print("HIVEMQ\n");
+  }
+
+  if (!mqttClient.connect(broker, port)) {
+    if (!reconnect) {
+      M5.Lcd.print("MQTT connection failed! Error code = ");
+      M5.Lcd.print(mqttClient.connectError());
+      M5.Lcd.print("\n");
+    }
+
+    reconnect = true;
+    return;
+  }
+
+  M5.Lcd.print("You're connected to the MQTT broker!\n");
+
+  delay(1000);
+
+  M5.Lcd.clear();
+  M5.Lcd.setCursor(0, 0);
+  reconnect = false;
+}
+
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
   delay(5000);
@@ -119,6 +157,8 @@ void setup() {
   pcfw2.pinMode(1, OUTPUT);
   pcfw2.digitalWrite(0, true);
   pcfw2.digitalWrite(1, true);
+
+  reconnectMqtt();
   
   /*
   //SCAN I2C BUS
