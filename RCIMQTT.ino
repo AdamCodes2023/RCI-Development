@@ -14,6 +14,22 @@ const char broker[]    = "06e8c7b775f1454b8b94fcd788277596.s2.eu.hivemq.cloud";
 int        port        = 8883;
 const char willTopic[] = "arduino/will";
 
+String di1_feed = String("/feeds/di1");
+
+String di2_feed = String("/feeds/di2");
+
+String di3_feed = String("");
+
+String di4_feed = String("");
+
+String di5_feed = String("");
+
+String di6_feed = String("");
+
+String di7_feed = String("");
+
+String di8_feed = String("");
+
 String do1_feed = String("/feeds/do1");
 
 String do2_feed = String("/feeds/do2");
@@ -29,6 +45,22 @@ String do6_feed = String("");
 String do7_feed = String("");
 
 String do8_feed = String("");
+
+String ai1_feed = String("/feeds/ai1");
+
+String ai2_feed = String("/feeds/ai2");
+
+String ai3_feed = String("");
+
+String ai4_feed = String("");
+
+String ai5_feed = String("");
+
+String ai6_feed = String("");
+
+String ai7_feed = String("");
+
+String ai8_feed = String("");
 
 String ao1_feed = String("/feeds/ao1");
 
@@ -50,6 +82,11 @@ EthernetClient ethClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
 
+String payload;
+bool retained = false;
+int qos = 0;
+bool duplicateMqttMessage = false;
+
 Adafruit_ADS1115 ads1115;
 int16_t adc0, adc1, adc2, adc3;
 
@@ -63,6 +100,16 @@ Adafruit_PCF8574 pcfw1;
 Adafruit_PCF8574 pcfw2;
 
 bool reconnect = false;
+
+void publishDI1() {
+  pcfr0Prev = int(pcfr.digitalRead(0));
+  payload = String(pcfr0Prev);
+
+  mqttClient.beginMessage(di1_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
 
 void reconnectMqtt() {
   String willPayload = "oh no!";
@@ -245,6 +292,7 @@ void setup() {
   pcfw2.digitalWrite(1, true);
 
   reconnectMqtt();
+  publishDI1();
   
   /*
   //SCAN I2C BUS
