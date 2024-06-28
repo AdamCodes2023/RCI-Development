@@ -1,9 +1,22 @@
+#include <SSLClient.h>
+#include "certificates.h" // This file must be regenerated
+#include <ArduinoMqttClient.h>
 #include <M5Core2.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
 #include <Adafruit_MCP4728.h>
 #include <Adafruit_PCF8574.h>
+
+byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
+
+const char broker[]    = "06e8c7b775f1454b8b94fcd788277596.s2.eu.hivemq.cloud";
+int        port        = 8883;
+const char willTopic[] = "arduino/will";
+
+EthernetClient ethClient;
+SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
+MqttClient mqttClient(ethClientSSL);
 
 Adafruit_ADS1115 ads1115;
 int16_t adc0, adc1, adc2, adc3;
@@ -25,7 +38,12 @@ void setup() {
                     /* Power chip connected to gpio21, gpio22, I2C device
                       Set battery charging voltage and current
                       If used battery, please call this function in your project */
+  M5.Lcd.setTextSize(3);
+  
   Wire.begin();
+
+  Ethernet.init(26);
+  Ethernet.begin(mac);
 
   //ADS1115 ADC
   ads1115.begin(0x48);
@@ -33,8 +51,8 @@ void setup() {
   adc0 = ads1115.readADC_SingleEnded(0);
   adc1 = ads1115.readADC_SingleEnded(1);
 
-  M5.Lcd.drawString(String(adc0), 0, 120, 1);
-  M5.Lcd.drawString(String(adc1), 0, 150, 1);
+  //M5.Lcd.drawString(String(adc0), 0, 120, 1);
+  //M5.Lcd.drawString(String(adc1), 0, 150, 1);
 
   /*
   //MCP4728 DAC
@@ -87,8 +105,8 @@ void setup() {
   pcfr0Prev = int(pcfr.digitalRead(0));
   pcfr1Prev = int(pcfr.digitalRead(1));
 
-  M5.Lcd.drawString(String(pcfr0Prev), 0, 60, 1);
-  M5.Lcd.drawString(String(pcfr1Prev), 0, 90, 1);
+  //M5.Lcd.drawString(String(pcfr0Prev), 0, 60, 1);
+  //M5.Lcd.drawString(String(pcfr1Prev), 0, 90, 1);
 
   pcfw1.begin(0x39, &Wire);
   pcfw1.pinMode(0, OUTPUT);
@@ -153,6 +171,7 @@ The loop() function is an endless loop, in which the program will continue to ru
 void loop() {
   M5.update();
 
+  /*
   //TEST PCF8574 DIGITAL IO FUNCTIONALITY
   int pcfr0Test = int(pcfr.digitalRead(0));
   int pcfr1Test = int(pcfr.digitalRead(1));
@@ -162,7 +181,9 @@ void loop() {
 
   pcfw2.digitalWrite(0, !bool(pcfr0Test));
   //pcfw2.digitalWrite(1, !bool(pcfr1Test));
+  */
   
+  /*
   //TEST ADS1115 ADC AND AD5665R DAC SCALABILITY
   int testadc0 = ads1115.readADC_SingleEnded(0);
   int testadc1 = ads1115.readADC_SingleEnded(1);
@@ -181,5 +202,6 @@ void loop() {
   Wire.write(byte(int(testadc1 * 2) >> 8));
   Wire.write(byte(int(testadc1 * 2)));
   Wire.endTransmission();
+  */
   
 }
