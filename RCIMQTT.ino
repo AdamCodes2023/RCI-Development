@@ -101,6 +101,11 @@ Adafruit_PCF8574 pcfw2;
 
 bool reconnect = false;
 
+void replaceText(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned int textSize, String text) {
+  M5.Lcd.fillRect(x, y, width, height, BLACK);
+  M5.Lcd.drawString(text, x, y, textSize);
+}
+
 void publishDI1() {
   pcfr0Prev = int(pcfr.digitalRead(0));
   payload = String(pcfr0Prev);
@@ -139,6 +144,16 @@ void publishAI2() {
   mqttClient.print(payload);
   mqttClient.endMessage();
   delay(500);
+}
+
+void publishAll() {
+  publishDI1();
+
+  publishDI2();
+
+  publishAI1();
+
+  publishAI2();
 }
 
 void reconnectMqtt() {
@@ -326,6 +341,7 @@ void setup() {
   publishDI2();
   publishAI1();
   publishAI2();
+  publishAll();
   
   /*
   //SCAN I2C BUS
