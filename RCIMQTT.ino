@@ -176,6 +176,54 @@ void onMqttMessage(int messageSize) {
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
     pcfw1.digitalWrite(1, !bool(message.toInt()));
   }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+    }
+    else {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(0));
+      Wire.write(byte(int(message.toInt() * 2) >> 8));
+      Wire.write(byte(int(message.toInt() * 2)));
+      Wire.endTransmission();
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO2")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(1));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+    }
+    else {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(1));
+      Wire.write(byte(int(message.toInt() * 2) >> 8));
+      Wire.write(byte(int(message.toInt() * 2)));
+      Wire.endTransmission();
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+    }
+  }
 }
 
 void reconnectMqtt() {
@@ -418,6 +466,7 @@ void setup() {
 The loop() function is an endless loop, in which the program will continue to run repeatedly */
 void loop() {
   M5.update();
+  mqttClient.poll();
 
   /*
   //TEST PCF8574 DIGITAL IO FUNCTIONALITY
