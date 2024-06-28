@@ -78,6 +78,45 @@ String ao7_feed = String("");
 
 String ao8_feed = String("");
 
+//#INITIAL VARIABLES
+String di1_value = String("-1");
+String di2_value = String("-2");
+String di3_value = String("-3");
+String di4_value = String("-4");
+String di5_value = String("-5");
+String di6_value = String("-6");
+String di7_value = String("-7");
+String di8_value = String("-8");
+
+String do1_value = String("-1");
+String do2_value = String("-2");
+String do3_value = String("-3");
+String do4_value = String("-4");
+String do5_value = String("-5");
+String do6_value = String("-6");
+String do7_value = String("-7");
+String do8_value = String("-8");
+
+String ai1_value = String("-1");
+String ai2_value = String("-2");
+String ai3_value = String("-3");
+String ai4_value = String("-4");
+String ai5_value = String("-5");
+String ai6_value = String("-6");
+String ai7_value = String("-7");
+String ai8_value = String("-8");
+
+String ao1_value = String("-1");
+String ao2_value = String("-2");
+String ao3_value = String("-3");
+String ao4_value = String("-4");
+String ao5_value = String("-5");
+String ao6_value = String("-6");
+String ao7_value = String("-7");
+String ao8_value = String("-8");
+
+unsigned int cycleCounter = 0;
+
 EthernetClient ethClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
@@ -104,6 +143,39 @@ bool reconnect = false;
 void replaceText(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned int textSize, String text) {
   M5.Lcd.fillRect(x, y, width, height, BLACK);
   M5.Lcd.drawString(text, x, y, textSize);
+}
+
+void cycleComponentValues() {
+  M5.Lcd.clear();
+  M5.Lcd.setCursor(0, 0);
+  if (cycleCounter == 0) {
+    M5.Lcd.drawString("Digital Inputs", 40, 0, 1);
+    M5.Lcd.drawString("1: " + di1_value, 0, 40, 1);
+    M5.Lcd.drawString("2: " + di2_value, 0, 80, 1);
+    M5.Lcd.drawString("3: " + di3_value, 0, 120, 1);
+    M5.Lcd.drawString("4: " + di4_value, 0, 160, 1);
+    M5.Lcd.drawString("5: " + di5_value, 170, 40, 1);
+    M5.Lcd.drawString("6: " + di6_value, 170, 80, 1);
+    M5.Lcd.drawString("7: " + di7_value, 170, 120, 1);
+    M5.Lcd.drawString("8: " + di8_value, 170, 160, 1);
+    M5.Lcd.drawString("CFG", 240, 210, 1);
+  }
+  if (cycleCounter == 1) {
+    M5.Lcd.drawString("Digital Outputs", 30, 0, 1);
+    M5.Lcd.drawString("1: " + do1_value, 0, 40, 1);
+    M5.Lcd.drawString("2: " + do2_value, 0, 80, 1);
+    M5.Lcd.drawString("3: " + do3_value, 0, 120, 1);
+    M5.Lcd.drawString("4: " + do4_value, 0, 160, 1);
+    M5.Lcd.drawString("5: " + do5_value, 170, 40, 1);
+    M5.Lcd.drawString("6: " + do6_value, 170, 80, 1);
+    M5.Lcd.drawString("7: " + do7_value, 170, 120, 1);
+    M5.Lcd.drawString("8: " + do8_value, 170, 160, 1); 
+    M5.Lcd.drawString("CFG", 240, 210, 1);   
+  }
+  cycleCounter++;
+  if (cycleCounter >= 4) {
+    cycleCounter = 0;
+  }
 }
 
 void publishDI1() {
