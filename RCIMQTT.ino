@@ -111,6 +111,16 @@ void publishDI1() {
   delay(500);
 }
 
+void publishDI2() {
+  pcfr1Prev = int(pcfr.digitalRead(1));
+  payload = String(pcfr1Prev);
+
+  mqttClient.beginMessage(di2_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);  
+}
+
 void reconnectMqtt() {
   String willPayload = "oh no!";
   bool willRetain = true;
@@ -293,6 +303,7 @@ void setup() {
 
   reconnectMqtt();
   publishDI1();
+  publishDI2();
   
   /*
   //SCAN I2C BUS
