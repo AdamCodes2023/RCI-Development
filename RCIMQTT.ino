@@ -336,6 +336,35 @@ void onLeftRelease() {
   }
 }
 
+void onCenterPress() {
+  if (configMenu1 || configMenu2) {
+    if (centerRed.isPressed()) {
+      centerPressedOnce = true;
+    }
+  }
+}
+
+void onCenterRelease() {
+  if (configMenu1) {
+    if (centerRed.isReleased() && centerPressedOnce) {
+      centerPressedOnce = false;
+      configMenu1Iterator++;
+      if (configMenu1Iterator > 4) {
+        configMenu1Iterator = 0;
+      }
+      if (configMenu1Iterator == 0) {
+        M5.Lcd.fillRect(80, 0, 60, 30, BLACK);
+        M5.Lcd.fillRect(50, 50, 100, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
+    }
+  }
+}
+
 void publishDI1() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING DI1!");
   previousMillis2 = millis();
