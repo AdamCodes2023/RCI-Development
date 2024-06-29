@@ -399,6 +399,40 @@ void onCenterRelease() {
       }
     }
   }
+  if (configMenu2 && configMenu1Iterator == 1) {
+    if (centerRed.isReleased() && centerPressedOnce) {
+      centerPressedOnce = false;
+    }
+  }
+  if (configMenu2 && configMenu1Iterator == 2) {
+    if (centerRed.isReleased() && centerPressedOnce) {
+      centerPressedOnce = false;
+    }  
+  }
+  if (configMenu2 && configMenu1Iterator == 3) {
+    if (centerRed.isReleased() && centerPressedOnce) {
+      centerPressedOnce = false;
+    }
+  }
+  if (configMenu2 && configMenu1Iterator == 4) {
+    if (centerRed.isReleased() && centerPressedOnce) {
+      centerPressedOnce = false;
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, ((configAo1Value) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(0));
+      Wire.write(byte(int(configAo1Value * 2) >> 8));
+      Wire.write(byte(int(configAo1Value * 2)));
+      Wire.endTransmission();
+
+      replaceText(10, 80, 300, 30, 1, String(configAo1Value * 2));
+      configAo1Value -= int((32768/5));
+      if (configAo1Value < 0) {
+        configAo1Value = 32767;
+      }
+    }
+  }
 }
 
 void publishDI1() {
