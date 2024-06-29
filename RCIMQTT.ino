@@ -133,6 +133,22 @@ unsigned long currentMillis3 = 0;
 unsigned long currentMillis4 = 0;
 unsigned long currentMillis5 = 0;
 
+Button leftRed(0, 240, 106, 40, "left-red");
+Button centerRed(106, 240, 106, 40, "center-red");
+Button rightRed(212, 240, 106, 40, "right-red");
+
+bool normalMode = true;
+bool configMenu1 = false;
+bool configMenu2 = false;
+bool centerPressedOnce = false;
+bool leftPressedOnce = false;
+bool rightPressedOnce = false;
+bool rightPressedTwice = false;
+bool rightPressedThree = false;
+int configMenu1Iterator = 0;
+long configAo1Value = 0;
+long configAo2Value = 0;
+
 EthernetClient ethClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
@@ -218,6 +234,35 @@ void cycleComponentValues() {
   cycleCounter++;
   if (cycleCounter >= 4) {
     cycleCounter = 0;
+  }
+}
+
+void onLeftPress() {
+  if (configMenu1 || configMenu2) {
+    if (leftRed.isPressed()) {
+      leftPressedOnce = true;
+    }
+  }
+}
+
+void onLeftRelease() {
+  if (configMenu1) {
+    if (leftRed.isReleased() && leftPressedOnce) {
+      leftPressedOnce = false;
+      configMenu1Iterator--;
+      if (configMenu1Iterator < 0) {
+        configMenu1Iterator = 4;
+      }
+      if (configMenu1Iterator == 0) {
+        M5.Lcd.fillRect(50, 50, 100, 30, BLACK);
+        M5.Lcd.fillRect(80, 0, 60, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
+    }
   }
 }
 
