@@ -117,6 +117,22 @@ String ao8_value = String("-8");
 
 unsigned int cycleCounter = 0;
 
+const long interval = 3600000;
+const long interval2 = 2000;
+const long interval3 = 1800000;
+const long interval4 = 5000;
+const long interval5 = 5000;
+unsigned long previousMillis = 0;
+unsigned long previousMillis2 = 0;
+unsigned long previousMillis3 = 0;
+unsigned long previousMillis4 = 0;
+unsigned long previousMillis5 = 0;
+unsigned long currentMillis = 0;
+unsigned long currentMillis2 = 0;
+unsigned long currentMillis3 = 0;
+unsigned long currentMillis4 = 0;
+unsigned long currentMillis5 = 0;
+
 EthernetClient ethClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
@@ -138,6 +154,9 @@ int pcfr1Prev = 0;
 Adafruit_PCF8574 pcfw1;
 Adafruit_PCF8574 pcfw2;
 
+bool clear = false;
+
+int reconnectCount = 0;
 bool reconnect = false;
 
 void replaceText(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned int textSize, String text) {
@@ -204,6 +223,8 @@ void cycleComponentValues() {
 
 void publishDI1() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING DI1!");
+  previousMillis2 = millis();
+  clear = true;
   
   pcfr0Prev = int(pcfr.digitalRead(0));
   payload = String(pcfr0Prev);
@@ -217,6 +238,8 @@ void publishDI1() {
 
 void publishDI2() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING DI2!");
+  previousMillis2 = millis();
+  clear = true;
   
   pcfr1Prev = int(pcfr.digitalRead(1));
   payload = String(pcfr1Prev);
@@ -230,6 +253,8 @@ void publishDI2() {
 
 void publishAI1() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING AI1");
+  previousMillis2 = millis();
+  clear = true;
   
   adc0 = ads1115.readADC_SingleEnded(0);
   payload = String(adc0);
@@ -243,6 +268,8 @@ void publishAI1() {
 
 void publishAI2() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING AI2!");
+  previousMillis2 = millis();
+  clear = true;
   
   adc1 = ads1115.readADC_SingleEnded(1);
   payload = String(adc1);
@@ -256,6 +283,11 @@ void publishAI2() {
 
 void publishAll() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING ALL!");
+  previousMillis2 = millis();
+  clear = true;
+
+  // save the last time a message was sent
+  previousMillis = currentMillis;
   
   publishDI1();
 
@@ -264,9 +296,13 @@ void publishAll() {
   publishAI1();
 
   publishAI2();
+
+  reconnectCount++;
 }
 
 void onMqttMessage(int messageSize) {
+  reconnectCount = 0;
+
   String message;
   message = "";
   // we received a message, print out the topic and contents
@@ -347,6 +383,8 @@ void onMqttMessage(int messageSize) {
 }
 
 void reconnectMqtt() {
+  reconnectCount = 0;
+  
   String willPayload = "oh no!";
   bool willRetain = true;
   int willQos = 0;
@@ -437,6 +475,12 @@ void reconnectMqtt() {
   M5.Lcd.clear();
   M5.Lcd.setCursor(0, 0);
   reconnect = false;
+
+  cycleCounter = 0;
+  cycleComponentValues();
+
+  previousMillis3 = millis();
+  previousMillis4 = millis();
 }
 
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
@@ -586,7 +630,48 @@ void setup() {
 The loop() function is an endless loop, in which the program will continue to run repeatedly */
 void loop() {
   M5.update();
-  mqttClient.poll();
+  
+  currentMillis3 = millis();
+  if (reconnectCount >= 4 || currentMillis3 - previousMillis3 >= interval3) {
+    mqttClient.stop();
+    delay(5000);
+  }
+
+  while (!mqttClient.connected()) {
+    if (!reconnect) {
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+    }
+    reconnectMqtt();
+  }
+
+  currentMillis5 = millis();
+  if (currentMillis5 - previousMillis5 >= interval5) {
+    previousMillis5 = currentMillis5;
+    mqttClient.poll();
+  }
+  
+  currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    publishAll();
+  }
+
+  if (clear) {
+    currentMillis2 = millis();
+  }
+
+  if (currentMillis2 - previousMillis2 >= interval2) {
+    M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+    previousMillis2 = currentMillis2;
+    clear = false;
+  }
+
+  currentMillis4 = millis();
+  if (currentMillis4 - previousMillis4 >= interval4) {
+    cycleComponentValues();
+    previousMillis4 = currentMillis4;
+  }
 
   /*
   //TEST PCF8574 DIGITAL IO FUNCTIONALITY
