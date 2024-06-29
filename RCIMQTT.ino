@@ -172,6 +172,30 @@ void cycleComponentValues() {
     M5.Lcd.drawString("8: " + do8_value, 170, 160, 1); 
     M5.Lcd.drawString("CFG", 240, 210, 1);   
   }
+  if (cycleCounter == 2) {
+    M5.Lcd.drawString("Analog Inputs", 40, 0, 1);
+    M5.Lcd.drawString("1: " + String((ai1_value.toFloat() * 2) / 3276.75, 2), 0, 40, 1);
+    M5.Lcd.drawString("2: " + String((ai2_value.toFloat() * 2) / 3276.75, 2), 0, 80, 1);
+    M5.Lcd.drawString("3: " + String((ai3_value.toFloat() * 2) / 3276.75, 2), 0, 120, 1);
+    M5.Lcd.drawString("4: " + String((ai4_value.toFloat() * 2) / 3276.75, 2), 0, 160, 1);
+    M5.Lcd.drawString("5: " + String((ai5_value.toFloat() * 2) / 3276.75, 2), 170, 40, 1);
+    M5.Lcd.drawString("6: " + String((ai6_value.toFloat() * 2) / 3276.75, 2), 170, 80, 1);
+    M5.Lcd.drawString("7: " + String((ai7_value.toFloat() * 2) / 3276.75, 2), 170, 120, 1);
+    M5.Lcd.drawString("8: " + String((ai8_value.toFloat() * 2) / 3276.75, 2), 170, 160, 1);
+    M5.Lcd.drawString("CFG", 240, 210, 1);
+  }
+  if (cycleCounter == 3) {
+    M5.Lcd.drawString("Analog Outputs", 40, 0, 1);
+    M5.Lcd.drawString("1: " + String((ao1_value.toFloat() * 2) / 3276.75, 2), 0, 40, 1);
+    M5.Lcd.drawString("2: " + String((ao2_value.toFloat() * 2) / 3276.75, 2), 0, 80, 1);
+    M5.Lcd.drawString("3: " + String((ao3_value.toFloat() * 2) / 3276.75, 2), 0, 120, 1);
+    M5.Lcd.drawString("4: " + String((ao4_value.toFloat() * 2) / 3276.75, 2), 0, 160, 1);
+    M5.Lcd.drawString("5: " + String((ao5_value.toFloat() * 2) / 3276.75, 2), 170, 40, 1);
+    M5.Lcd.drawString("6: " + String((ao6_value.toFloat() * 2) / 3276.75, 2), 170, 80, 1);
+    M5.Lcd.drawString("7: " + String((ao7_value.toFloat() * 2) / 3276.75, 2), 170, 120, 1);
+    M5.Lcd.drawString("8: " + String((ao8_value.toFloat() * 2) / 3276.75, 2), 170, 160, 1);
+    M5.Lcd.drawString("CFG", 240, 210, 1);
+  }
   cycleCounter++;
   if (cycleCounter >= 4) {
     cycleCounter = 0;
@@ -179,8 +203,11 @@ void cycleComponentValues() {
 }
 
 void publishDI1() {
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI1!");
+  
   pcfr0Prev = int(pcfr.digitalRead(0));
   payload = String(pcfr0Prev);
+  di1_value = payload;
 
   mqttClient.beginMessage(di1_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
@@ -189,8 +216,11 @@ void publishDI1() {
 }
 
 void publishDI2() {
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI2!");
+  
   pcfr1Prev = int(pcfr.digitalRead(1));
   payload = String(pcfr1Prev);
+  di2_value = payload;
 
   mqttClient.beginMessage(di2_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
@@ -199,8 +229,11 @@ void publishDI2() {
 }
 
 void publishAI1() {
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI1");
+  
   adc0 = ads1115.readADC_SingleEnded(0);
   payload = String(adc0);
+  ai1_value = payload;
 
   mqttClient.beginMessage(ai1_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
@@ -209,8 +242,11 @@ void publishAI1() {
 }
 
 void publishAI2() {
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI2!");
+  
   adc1 = ads1115.readADC_SingleEnded(1);
   payload = String(adc1);
+  ai2_value = payload;
 
   mqttClient.beginMessage(ai2_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
@@ -219,6 +255,8 @@ void publishAI2() {
 }
 
 void publishAll() {
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING ALL!");
+  
   publishDI1();
 
   publishDI2();
@@ -244,9 +282,11 @@ void onMqttMessage(int messageSize) {
 
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO1")) {
     pcfw1.digitalWrite(0, !bool(message.toInt()));
+    do1_value = message;
   }
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
     pcfw1.digitalWrite(1, !bool(message.toInt()));
+    do2_value = message;
   }
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
     if ((message.toInt()) < 0) {
@@ -259,6 +299,8 @@ void onMqttMessage(int messageSize) {
 
       //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
+
+      ao1_value = "0";
     }
     else {
       
@@ -270,6 +312,8 @@ void onMqttMessage(int messageSize) {
 
       //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
+
+      ao1_value = message;
     }
   }
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO2")) {
@@ -283,6 +327,8 @@ void onMqttMessage(int messageSize) {
       
       //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
+
+      ao2_value = "0";
     }
     else {
       
@@ -294,6 +340,8 @@ void onMqttMessage(int messageSize) {
 
       //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
+
+      ao2_value = message;
     }
   }
 }
