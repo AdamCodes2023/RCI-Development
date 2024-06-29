@@ -508,6 +508,47 @@ void onRightRelease() {
       M5.Lcd.drawString("DI1 READ VALUE: ", 10, 50, 1);
       M5.Lcd.drawString("DI2 READ VALUE: ", 10, 120, 1);
     }
+    if (configMenu1Iterator == 2) {
+      configMenu2 = true;
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+      delay(300);
+      M5.Lcd.drawString("DO1 SEND VALUE: ", 10, 50, 1);
+      M5.Lcd.drawString("DO2 SEND VALUE: ", 10, 120, 1);
+    }
+
+    if (configMenu1Iterator == 3) {
+      configMenu2 = true;
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+      delay(300);
+      M5.Lcd.drawString("AI1 READ VALUE: ", 10, 50, 1);
+      M5.Lcd.drawString("AI2 READ VALUE: ", 10, 120, 1);
+    }
+    
+    if (configMenu1Iterator == 4) {
+      configMenu2 = true;
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+      delay(300);
+      M5.Lcd.drawString("AO1 SEND VALUE: ", 10, 50, 1);
+      M5.Lcd.drawString("AO2 SEND VALUE: ", 10, 120, 1);
+    }
+  }
+  if (rightRed.isReleased() && rightPressedThree) {
+    rightPressedThree = false;
+    configMenu1 = true;
+    M5.Lcd.clear();
+    M5.Lcd.setCursor(0, 0);
+    delay(300);
+
+    configMenu1Iterator = 0;
+    M5.Lcd.fillRect(80, 0, 60, 30, GREEN);
+    M5.Lcd.drawString("EXIT", 80, 0, 1);
+    M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+    M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+    M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+    M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
   }
 }
 
