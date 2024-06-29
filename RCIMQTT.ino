@@ -122,16 +122,19 @@ const long interval2 = 2000;
 const long interval3 = 1800000;
 const long interval4 = 5000;
 const long interval5 = 5000;
+const long interval6 = 5000;
 unsigned long previousMillis = 0;
 unsigned long previousMillis2 = 0;
 unsigned long previousMillis3 = 0;
 unsigned long previousMillis4 = 0;
 unsigned long previousMillis5 = 0;
+unsigned long previousMillis6 = 0;
 unsigned long currentMillis = 0;
 unsigned long currentMillis2 = 0;
 unsigned long currentMillis3 = 0;
 unsigned long currentMillis4 = 0;
 unsigned long currentMillis5 = 0;
+unsigned long currentMillis6 = 0;
 
 Button leftRed(0, 240, 106, 40, "left-red");
 Button centerRed(106, 240, 106, 40, "center-red");
@@ -164,11 +167,15 @@ int16_t adc0, adc1, adc2, adc3;
 Adafruit_MCP4728 mcp;
 
 Adafruit_PCF8574 pcfr;
-int pcfr0Prev = 0;
-int pcfr1Prev = 0;
 
 Adafruit_PCF8574 pcfw1;
 Adafruit_PCF8574 pcfw2;
+
+int16_t adc0Prev = 0;
+int16_t adc1Prev = 0;
+
+int pcfr0Prev = 0;
+int pcfr1Prev = 0;
 
 bool clear = false;
 
@@ -588,6 +595,7 @@ void publishAI1() {
   clear = true;
   
   adc0 = ads1115.readADC_SingleEnded(0);
+  adc0Prev = adc0;
   payload = String(adc0);
   ai1_value = payload;
 
@@ -603,6 +611,7 @@ void publishAI2() {
   clear = true;
   
   adc1 = ads1115.readADC_SingleEnded(1);
+  adc1Prev = adc1;
   payload = String(adc1);
   ai2_value = payload;
 
@@ -834,6 +843,8 @@ void setup() {
   ads1115.setGain(GAIN_ONE);
   adc0 = ads1115.readADC_SingleEnded(0);
   adc1 = ads1115.readADC_SingleEnded(1);
+  adc0Prev = ads1115.readADC_SingleEnded(0);
+  adc1Prev = ads1115.readADC_SingleEnded(1);
 
   //M5.Lcd.drawString(String(adc0), 0, 120, 1);
   //M5.Lcd.drawString(String(adc1), 0, 150, 1);
@@ -961,48 +972,79 @@ void setup() {
 The loop() function is an endless loop, in which the program will continue to run repeatedly */
 void loop() {
   M5.update();
-  
-  currentMillis3 = millis();
-  if (reconnectCount >= 4 || currentMillis3 - previousMillis3 >= interval3) {
-    mqttClient.stop();
-    delay(5000);
-  }
 
-  while (!mqttClient.connected()) {
-    if (!reconnect) {
-      M5.Lcd.clear();
-      M5.Lcd.setCursor(0, 0);
+  if (normalMode) {
+    currentMillis3 = millis();
+    if (reconnectCount >= 4 || currentMillis3 - previousMillis3 >= interval3) {
+      mqttClient.stop();
+      delay(5000);
     }
-    reconnectMqtt();
+
+    while (!mqttClient.connected()) {
+      if (!reconnect) {
+        M5.Lcd.clear();
+        M5.Lcd.setCursor(0, 0);
+      }
+      reconnectMqtt();
+    }
+
+    currentMillis5 = millis();
+    if (currentMillis5 - previousMillis5 >= interval5) {
+      previousMillis5 = currentMillis5;
+      //client.loop();
+      mqttClient.poll();
+    }
+
+    currentMillis6 = millis();
+    if (currentMillis6 - previousMillis6 >= interval6) {
+      previousMillis6 = currentMillis6;
+
+      if ((adc0Prev + 100) < ads1115.readADC_SingleEnded(0) || (adc0Prev - 100) > ads1115.readADC_SingleEnded(0)) {
+        publishAI1();
+      }
+
+      if ((adc1Prev + 100) < ads1115.readADC_SingleEnded(1) || (adc1Prev - 100) > ads1115.readADC_SingleEnded(1)) {
+        publishAI2();
+      }
+
+      if (pcfr0Prev != int(pcfr.digitalRead(0))) {
+        publishDI1();
+      }
+
+      if (pcfr1Prev != int(pcfr.digitalRead(1))) {
+        publishDI2();
+      }
+    }
+
+    currentMillis = millis();
+
+    if (currentMillis - previousMillis >= interval) {
+      publishAll();
+    }
+
+    if (clear) {
+      currentMillis2 = millis();
+    }
+
+    if (currentMillis2 - previousMillis2 >= interval2) {
+      M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+      previousMillis2 = currentMillis2;
+      clear = false;
+    }
+
+    currentMillis4 = millis();
+    if (currentMillis4 - previousMillis4 >= interval4) {
+      cycleComponentValues();
+      previousMillis4 = currentMillis4;
+    }
   }
 
-  currentMillis5 = millis();
-  if (currentMillis5 - previousMillis5 >= interval5) {
-    previousMillis5 = currentMillis5;
-    mqttClient.poll();
-  }
-  
-  currentMillis = millis();
-
-  if (currentMillis - previousMillis >= interval) {
-    publishAll();
-  }
-
-  if (clear) {
-    currentMillis2 = millis();
-  }
-
-  if (currentMillis2 - previousMillis2 >= interval2) {
-    M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
-    previousMillis2 = currentMillis2;
-    clear = false;
-  }
-
-  currentMillis4 = millis();
-  if (currentMillis4 - previousMillis4 >= interval4) {
-    cycleComponentValues();
-    previousMillis4 = currentMillis4;
-  }
+  onRightPress();
+  onRightRelease();
+  onLeftPress();
+  onLeftRelease();
+  onCenterPress();
+  onCenterRelease();
 
   /*
   //TEST PCF8574 DIGITAL IO FUNCTIONALITY
