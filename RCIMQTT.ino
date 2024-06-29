@@ -361,6 +361,42 @@ void onCenterRelease() {
         M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
         M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
       }
+      if (configMenu1Iterator == 1) {
+        M5.Lcd.fillRect(50, 50, 100, 30, BLACK);
+        M5.Lcd.fillRect(50, 100, 100, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
+      if (configMenu1Iterator == 2) {
+        M5.Lcd.fillRect(50, 100, 100, 30, BLACK);
+        M5.Lcd.fillRect(50, 150, 100, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
+      if (configMenu1Iterator == 3) {
+        M5.Lcd.fillRect(50, 150, 100, 30, BLACK);
+        M5.Lcd.fillRect(50, 200, 100, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
+      if (configMenu1Iterator == 4) {
+        M5.Lcd.fillRect(50, 200, 100, 30, BLACK);
+        M5.Lcd.fillRect(80, 0, 60, 30, GREEN);
+        M5.Lcd.drawString("EXIT", 80, 0, 1);
+        M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+        M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+        M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+        M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+      }
     }
   }
 }
