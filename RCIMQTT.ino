@@ -469,6 +469,46 @@ void onRightRelease() {
     M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
     M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
   }
+
+  if (rightRed.isReleased() && rightPressedTwice) {
+    rightPressedTwice = false;
+
+    if (configMenu1Iterator == 0) {
+      normalMode = true;
+      M5.Lcd.drawString("NORMAL MODE", 10, 200, 1);
+      configAo1Value = 0;
+      configAo2Value = 0;
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, (ai1_value.toInt() * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                  MCP4728_GAIN_2X);
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, (ai2_value.toInt() * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                  MCP4728_GAIN_2X);
+
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(0));
+      Wire.write(byte(int(ai1_value.toInt() * 2) >> 8));
+      Wire.write(byte(int(ai1_value.toInt() * 2)));
+      Wire.endTransmission();
+
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(1));
+      Wire.write(byte(int(ai2_value.toInt() * 2) >> 8));
+      Wire.write(byte(int(ai2_value.toInt() * 2)));
+      Wire.endTransmission();
+
+      delay(1000);
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+    }
+
+    if (configMenu1Iterator == 1) {
+      configMenu2 = true;
+      M5.Lcd.clear();
+      M5.Lcd.setCursor(0, 0);
+      delay(300);
+      M5.Lcd.drawString("DI1 READ VALUE: ", 10, 50, 1);
+      M5.Lcd.drawString("DI2 READ VALUE: ", 10, 120, 1);
+    }
+  }
 }
 
 void publishDI1() {
