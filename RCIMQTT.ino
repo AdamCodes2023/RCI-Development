@@ -435,6 +435,42 @@ void onCenterRelease() {
   }
 }
 
+void onRightPress() {
+  if (rightRed.isPressed() && normalMode) {
+    rightPressedOnce = true;
+    normalMode = false;
+  }
+
+  if (rightRed.isPressed() && configMenu1) {
+    rightPressedTwice = true;
+    configMenu1 = false;
+  }
+
+  if (rightRed.isPressed() && configMenu2) {
+    rightPressedThree = true;
+    configMenu2 = false;
+  }
+}
+
+void onRightRelease() {
+  if (rightRed.isReleased() && rightPressedOnce) {
+    configMenu1 = true;
+    rightPressedOnce = false;
+    M5.Lcd.drawString("CONFIG MODE", 10, 200, 1);
+    delay(1000);
+    M5.Lcd.clear();
+    M5.Lcd.setCursor(0, 0);
+    mqttClient.stop();
+
+    M5.Lcd.fillRect(80, 0, 60, 30, GREEN);
+    M5.Lcd.drawString("EXIT", 80, 0, 1);
+    M5.Lcd.drawString("DI CONFIG", 50, 50, 1);
+    M5.Lcd.drawString("DO CONFIG", 50, 100, 1);
+    M5.Lcd.drawString("AI CONFIG", 50, 150, 1);
+    M5.Lcd.drawString("AO CONFIG", 50, 200, 1);
+  }
+}
+
 void publishDI1() {
   replaceText(10, 200, 300, 50, 1, "PUBLISHING DI1!");
   previousMillis2 = millis();
