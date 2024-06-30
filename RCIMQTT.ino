@@ -722,6 +722,56 @@ void onMqttMessage(int messageSize) {
   }
 }
 
+void configConnect() {
+  String willPayload = "oh no!";
+  bool willRetain = true;
+  int willQos = 0;
+
+  configClient.beginWill(willTopic, willPayload.length(), willRetain, willQos);
+  configClient.print(willPayload);
+  configClient.endWill();
+  
+  configClient.setUsernamePassword("ADAMMQTT5","Pribusin2");
+  
+  if (!reconnect) {
+    M5.Lcd.print("Attempting to connect to the MQTT broker:\n");
+    M5.Lcd.print("CONFIG HIVEMQ\n");
+  }
+
+  if (!configClient.connect(broker, port)) {
+    if (!reconnect) {
+      M5.Lcd.print("MQTT connection failed! Error code = ");
+      M5.Lcd.print(configClient.connectError());
+      M5.Lcd.print("\n");
+    }
+
+    reconnect = true;
+    return;
+  }
+
+  M5.Lcd.print("You're connected to the MQTT broker!\n");
+
+  // set the message receive callback
+  configClient.onMessage(onConfigMqttMessage);
+
+  // subscribe to a topic
+  // the second parameter sets the QoS of the subscription,
+  // the the library supports subscribing at QoS 0, 1, or 2
+  int subscribeQos = 0;
+
+  configClient.subscribe(serialNumber + "_GID", subscribeQos);
+  configClient.subscribe(serialNumber + "_UID", subscribeQos);
+  configClient.subscribe(serialNumber + "_IO", subscribeQos);
+  configClient.subscribe(serialNumber + "_UPDATE", subscribeQos);
+  configClient.subscribe(serialNumber + "_NAME", subscribeQos);
+
+  M5.Lcd.clear();
+  M5.Lcd.setCursor(0, 0);
+  reconnect = false;
+
+  previousMillis7 = millis();
+}
+
 void reconnectMqtt() {
   reconnectCount = 0;
   
