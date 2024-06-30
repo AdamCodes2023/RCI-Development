@@ -131,6 +131,7 @@ const long interval4 = 5000;
 const long interval5 = 5000;
 const long interval6 = 5000;
 const long interval7 = 1800000;
+const long interval8 = 5000;
 unsigned long previousMillis = 0;
 unsigned long previousMillis2 = 0;
 unsigned long previousMillis3 = 0;
@@ -138,6 +139,7 @@ unsigned long previousMillis4 = 0;
 unsigned long previousMillis5 = 0;
 unsigned long previousMillis6 = 0;
 unsigned long previousMillis7 = 0;
+unsigned long previousMillis8 = 0;
 unsigned long currentMillis = 0;
 unsigned long currentMillis2 = 0;
 unsigned long currentMillis3 = 0;
@@ -145,6 +147,7 @@ unsigned long currentMillis4 = 0;
 unsigned long currentMillis5 = 0;
 unsigned long currentMillis6 = 0;
 unsigned long currentMillis7 = 0;
+unsigned long currentMillis8 = 0;
 
 Button leftRed(0, 240, 106, 40, "left-red");
 Button centerRed(106, 240, 106, 40, "center-red");
@@ -1238,12 +1241,43 @@ void setup() {
   myFile.close();
   */
 
-  //GET MQTT TOPICS FROM SD CARD
-  myFile = SD.open("/config.txt");
-  while (myFile.available()) {
-    analyzeSDCardContents();
+  if (SD.exists("/config.txt") == 1) {
+    //INITIAL CONFIGURATION CONNECTION
+    myFile = SD.open("/config.txt");
+    if (myFile.available() < 1) {
+      myFile.close();
+      configConnect();
+      while (!hasConfigInfo) {
+        currentMillis7 = millis();
+        if (currentMillis7 - previousMillis7 >= interval7) {
+          configClient.stop();
+          delay(5000);
+        }
+
+        while (!configClient.connected()) {
+          if (!reconnect) {
+            M5.Lcd.clear();
+            M5.Lcd.setCursor(0, 0);
+          }
+          configConnect();
+        }
+
+        currentMillis8 = millis();
+        if (currentMillis8 - previousMillis8 >= interval8) {
+          previousMillis8 = currentMillis8;
+          //client.loop();
+          configClient.poll();
+        }
+      }
+    }
+
+    //GET MQTT TOPICS FROM SD CARD
+    myFile = SD.open("/config.txt");
+    while (myFile.available()) {
+      analyzeSDCardContents();
+    }
+    myFile.close();
   }
-  myFile.close();
 
   //ADS1115 ADC
   ads1115.begin(0x48);
