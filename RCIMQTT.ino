@@ -78,6 +78,11 @@ String ao7_feed = String("");
 
 String ao8_feed = String("");
 
+String ds0, ds1, ds2, ds3, ds4, ds5, ds6, ds7;
+String * di_feeds[8];
+String as0, as1, as2, as3, as4, as5, as6, as7;
+String * ai_feeds[8];
+
 //#INITIAL VARIABLES
 String di1_value = String("-1");
 String di2_value = String("-2");
@@ -123,18 +128,21 @@ const long interval3 = 1800000;
 const long interval4 = 5000;
 const long interval5 = 5000;
 const long interval6 = 5000;
+const long interval7 = 1800000;
 unsigned long previousMillis = 0;
 unsigned long previousMillis2 = 0;
 unsigned long previousMillis3 = 0;
 unsigned long previousMillis4 = 0;
 unsigned long previousMillis5 = 0;
 unsigned long previousMillis6 = 0;
+unsigned long previousMillis7 = 0;
 unsigned long currentMillis = 0;
 unsigned long currentMillis2 = 0;
 unsigned long currentMillis3 = 0;
 unsigned long currentMillis4 = 0;
 unsigned long currentMillis5 = 0;
 unsigned long currentMillis6 = 0;
+unsigned long currentMillis7 = 0;
 
 Button leftRed(0, 240, 106, 40, "left-red");
 Button centerRed(106, 240, 106, 40, "center-red");
@@ -153,8 +161,11 @@ long configAo1Value = 0;
 long configAo2Value = 0;
 
 EthernetClient ethClient;
+EthernetClient configEthClient;
 SSLClient ethClientSSL(ethClient, TAs, (size_t)TAs_NUM, G36);
+SSLClient configEthClientSSL(configEthClient, TAs, (size_t)TAs_NUM, G36);
 MqttClient mqttClient(ethClientSSL);
+MqttClient configClient(configEthClientSSL);
 
 String payload;
 bool retained = false;
@@ -181,6 +192,14 @@ bool clear = false;
 
 int reconnectCount = 0;
 bool reconnect = false;
+
+bool hasConfigInfo = false;
+String groupID = String("");
+String unitID = String("");
+String IONum = String("");
+String updateTime = String("");
+String consumerName = String("");
+bool ioKnown = false;
 
 void replaceText(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned int textSize, String text) {
   M5.Lcd.fillRect(x, y, width, height, BLACK);
@@ -680,6 +699,48 @@ void onConfigMqttMessage(int messageSize) {
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
     do2_feed = message;
   }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO3")) {
+    do3_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO4")) {
+    do4_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO5")) {
+    do5_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO6")) {
+    do6_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO7")) {
+    do7_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO8")) {
+    do8_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
+    ao1_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO2")) {
+    ao2_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO3")) {
+    ao3_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO4")) {
+    ao4_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO5")) {
+    ao5_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO6")) {
+    ao6_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO7")) {
+    ao7_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO8")) {
+    ao8_feed = message;
+  }
 }
 
 void onMqttMessage(int messageSize) {
@@ -926,6 +987,24 @@ void setup() {
   M5.Lcd.setTextSize(3);
   
   Wire.begin();
+
+  di_feeds[0] = & ds0;// <-- The '&' symbol sends just the String's pointer
+  di_feeds[1] = & ds1;//     through the '=' symbol to the array.
+  di_feeds[2] = & ds2;//
+  di_feeds[3] = & ds3;// <-- We still must load the real Strings into the
+  di_feeds[4] = & ds4;//     array, one by one.
+  di_feeds[5] = & ds5;//
+  di_feeds[6] = & ds6;//
+  di_feeds[7] = & ds7;
+
+  ai_feeds[0] = & as0;// <-- The '&' symbol sends just the String's pointer
+  ai_feeds[1] = & as1;//     through the '=' symbol to the array.
+  ai_feeds[2] = & as2;//
+  ai_feeds[3] = & as3;// <-- We still must load the real Strings into the
+  ai_feeds[4] = & as4;//     array, one by one.
+  ai_feeds[5] = & as5;//
+  ai_feeds[6] = & as6;//
+  ai_feeds[7] = & as7;
 
   Ethernet.init(26);
   Ethernet.begin(mac);
