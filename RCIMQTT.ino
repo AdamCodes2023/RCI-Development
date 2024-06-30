@@ -1268,7 +1268,34 @@ void setup() {
           //client.loop();
           configClient.poll();
         }
+        
+        if (ioKnown) {
+          int subscribeQos = 0;
+          for (int i = 1; i <= IONum.toInt(); i++) {
+            String di_feed = groupID + "_" + unitID + "_DI" + i;
+            *di_feeds[i - 1] = di_feed;
+            String ai_feed = groupID + "_" + unitID + "_AI" + i;
+            *ai_feeds[i - 1] = ai_feed;
+            String doTopic = serialNumber + "_DO" + i;
+            String aoTopic = serialNumber + "_AO" + i;
+            configClient.subscribe(doTopic, subscribeQos);
+            configClient.subscribe(aoTopic, subscribeQos);
+          }
+          ioKnown = false;
+        }
       }
+      //configClient.disconnect();
+      configClient.stop();
+      myFile = SD.open("/config.txt", FILE_WRITE);
+      myFile.print(groupID + "_GID;" + unitID + "_UID;" + IONum + "_ION;" + updateTime + "_UPT;" + consumerName + "_CN;" +
+      *di_feeds[0] + ";" + *di_feeds[1] + ";" + *di_feeds[2] + ";" + *di_feeds[3] + ";" + *di_feeds[4] + ";" + *di_feeds[5] + ";" + *di_feeds[6] + ";" + *di_feeds[7] + ";" +
+      *ai_feeds[0] + ";" + *ai_feeds[1] + ";" + *ai_feeds[2] + ";" + *ai_feeds[3] + ";" + *ai_feeds[4] + ";" + *ai_feeds[5] + ";" + *ai_feeds[6] + ";" + *ai_feeds[7] + ";" +
+      do1_feed + ";" + do2_feed + ";" + do3_feed + ";" + do4_feed + ";" + do5_feed + ";" + do6_feed + ";" + do7_feed + ";" + do8_feed + ";" +
+      ao1_feed + ";" + ao2_feed + ";" + ao3_feed + ";" + ao4_feed + ";" + ao5_feed + ";" + ao6_feed + ";" + ao7_feed + ";" + ao8_feed + ";");
+      myFile.close();
+      //ESP.restart();
+    } else {
+      myFile.close();
     }
 
     //GET MQTT TOPICS FROM SD CARD
