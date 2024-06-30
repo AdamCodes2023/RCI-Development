@@ -640,6 +640,48 @@ void publishAll() {
   reconnectCount++;
 }
 
+void onConfigMqttMessage(int messageSize) {
+  reconnectCount = 0;
+
+  String message;
+  message = "";
+  // we received a message, print out the topic and contents
+
+  String topic;
+  topic = "";
+  topic = configClient.messageTopic();
+
+  // use the Stream interface to print the contents
+  while (configClient.available()) {
+    message += ((char)configClient.read());
+  }
+
+
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("GID")) {
+    groupID = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("UID")) {
+    unitID = message;
+  }
+  if (topic.substring(topic.length() - 2, topic.length()).equalsIgnoreCase("IO")) {
+    IONum = message;
+    ioKnown = true;
+  }
+  if (topic.substring(topic.length() - 6, topic.length()).equalsIgnoreCase("UPDATE")) {
+    updateTime = message;
+  }
+  if (topic.substring(topic.length() - 4, topic.length()).equalsIgnoreCase("NAME")) {
+    consumerName = message;
+    hasConfigInfo = true;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO1")) {
+    do1_feed = message;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
+    do2_feed = message;
+  }
+}
+
 void onMqttMessage(int messageSize) {
   reconnectCount = 0;
 
