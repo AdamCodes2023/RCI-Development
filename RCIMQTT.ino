@@ -988,6 +988,68 @@ void reconnectMqtt() {
   previousMillis4 = millis();
 }
 
+void analyzeSDCardContents() {
+  bool state = false;
+  int rawCh = 0;
+  char ch = 'n';
+  String topic = String("");
+  while (!state) {
+    rawCh = myFile.read();
+    if (rawCh == 59) {
+      state = true;
+    }
+    else {
+      ch = char(rawCh);
+      topic += ch;
+    }
+  }
+  if (topic.indexOf('-') != -1) {
+    serialNumber = topic;
+  }
+  if (topic.indexOf(':') != -1) {
+    stringMac = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("GID")) {
+    groupID = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("UID")) {
+    unitID = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ION")) {
+    IONum = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("UPT")) {
+    updateTime = topic;
+  }
+  if (topic.substring(topic.length() - 2, topic.length()).equalsIgnoreCase("CN")) {
+    consumerName = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI1")) {
+    di1_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI2")) {
+    di2_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI3")) {
+    di3_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI4")) {
+    di4_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI5")) {
+    di5_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI6")) {
+    di6_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI7")) {
+    di7_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI8")) {
+    di8_feed = topic;
+  }
+}
+
 void hexCharacterStringToBytes(byte *byteArray, const char *hexString) {
   bool oddLength = strlen(hexString) & 1;
 
