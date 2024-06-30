@@ -3,10 +3,12 @@
 #include <ArduinoMqttClient.h>
 #include <M5Core2.h>
 #include <SPI.h>
+#include <Ethernet.h>
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
 #include <Adafruit_MCP4728.h>
 #include <Adafruit_PCF8574.h>
+#include <Preferences.h>
 
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 
@@ -192,6 +194,16 @@ bool clear = false;
 
 int reconnectCount = 0;
 bool reconnect = false;
+
+const int chipSelect = 4;
+File myFile;
+
+Preferences preferences;
+const char* pnamespace = "InternalInfo";
+const char* serialKey = "SerialNumber";
+const char* macKey = "MacAddress";
+String serialNumber = String("");
+String stringMac = String("");
 
 bool hasConfigInfo = false;
 String groupID = String("");
@@ -1006,8 +1018,38 @@ void setup() {
   ai_feeds[6] = & as6;//
   ai_feeds[7] = & as7;
 
+  //WRITE SERIAL NUMBER AND MAC ADDRESS TO INTERNAL MEMORY
+  if (SD.exists("/internal.txt") == 1) {
+    myFile = SD.open("/internal.txt");
+    while (myFile.available()) {
+      analyzeSDCardContents();
+    }
+    myFile.close();
+    SD.remove("/internal.txt");
+    preferences.begin(pnamespace);
+    preferences.putString(serialKey, serialNumber);
+    preferences.putString(macKey, stringMac);
+    preferences.end();
+  }
+
+  //RETREIVE IMPORTANT INTERNAL INFO
+  preferences.begin(pnamespace);
+  serialNumber = preferences.getString(serialKey);
+  stringMac = preferences.getString(macKey);
+  preferences.end();
+
   Ethernet.init(26);
   Ethernet.begin(mac);
+
+  /*
+  //TEST SD CARD OPERATIONS
+  myFile = SD.open("/test.txt", FILE_WRITE);
+  myFile.println("testing 1, 2, 3.");
+  myFile.close();
+  myFile = SD.open("/test.txt");
+  M5.Lcd.print(myFile.read());
+  myFile.close();
+  */
 
   //ADS1115 ADC
   ads1115.begin(0x48);
