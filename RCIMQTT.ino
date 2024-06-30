@@ -1048,6 +1048,78 @@ void analyzeSDCardContents() {
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DI8")) {
     di8_feed = topic;
   }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI1")) {
+    ai1_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI2")) {
+    ai2_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI3")) {
+    ai3_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI4")) {
+    ai4_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI5")) {
+    ai5_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI6")) {
+    ai6_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI7")) {
+    ai7_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AI8")) {
+    ai8_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO1")) {
+    do1_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
+    do2_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO3")) {
+    do3_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO4")) {
+    do4_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO5")) {
+    do5_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO6")) {
+    do6_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO7")) {
+    do7_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO8")) {
+    do8_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
+    ao1_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO2")) {
+    ao2_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO3")) {
+    ao3_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO4")) {
+    ao4_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO5")) {
+    ao5_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO6")) {
+    ao6_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO7")) {
+    ao7_feed = topic;
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO8")) {
+    ao8_feed = topic;
+  }
 }
 
 void hexCharacterStringToBytes(byte *byteArray, const char *hexString) {
@@ -1165,6 +1237,13 @@ void setup() {
   M5.Lcd.print(myFile.read());
   myFile.close();
   */
+
+  //GET MQTT TOPICS FROM SD CARD
+  myFile = SD.open("/config.txt");
+  while (myFile.available()) {
+    analyzeSDCardContents();
+  }
+  myFile.close();
 
   //ADS1115 ADC
   ads1115.begin(0x48);
