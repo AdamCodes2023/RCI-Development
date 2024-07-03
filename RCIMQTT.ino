@@ -177,8 +177,8 @@ bool retained = false;
 int qos = 0;
 bool duplicateMqttMessage = false;
 
-Adafruit_ADS1115 ads1115;
-int16_t adc0, adc1, adc2, adc3;
+Adafruit_ADS1115 ads1115, ads1115second;
+int16_t adc0, adc1, adc2, adc3, adc0second, adc1second, adc2second, adc3second;
 
 Adafruit_MCP4728 mcp;
 
@@ -189,9 +189,21 @@ Adafruit_PCF8574 pcfw2;
 
 int16_t adc0Prev = 0;
 int16_t adc1Prev = 0;
+int16_t adc2Prev = 0;
+int16_t adc3Prev = 0;
+int16_t adc0secondPrev = 0;
+int16_t adc1secondPrev = 0;
+int16_t adc2secondPrev = 0;
+int16_t adc3secondPrev = 0;
 
 int pcfr0Prev = 0;
 int pcfr1Prev = 0;
+int pcfr2Prev = 0;
+int pcfr3Prev = 0;
+int pcfr4Prev = 0;
+int pcfr5Prev = 0;
+int pcfr6Prev = 0;
+int pcfr7Prev = 0;
 
 bool clear = false;
 
@@ -1311,8 +1323,17 @@ void setup() {
   ads1115.setGain(GAIN_ONE);
   adc0 = ads1115.readADC_SingleEnded(0);
   adc1 = ads1115.readADC_SingleEnded(1);
-  adc0Prev = ads1115.readADC_SingleEnded(0);
-  adc1Prev = ads1115.readADC_SingleEnded(1);
+  adc2 = ads1115.readADC_SingleEnded(2);
+  adc3 = ads1115.readADC_SingleEnded(3);
+  //M5.Lcd.print("ADC OK\n");
+
+  
+  ads1115second.begin(0x49);
+  ads1115second.setGain(GAIN_ONE);
+  adc0second = ads1115second.readADC_SingleEnded(0);
+  adc1second = ads1115second.readADC_SingleEnded(1);
+  adc2second = ads1115second.readADC_SingleEnded(2);
+  adc3second = ads1115second.readADC_SingleEnded(3);
 
   //M5.Lcd.drawString(String(adc0), 0, 120, 1);
   //M5.Lcd.drawString(String(adc1), 0, 150, 1);
@@ -1338,14 +1359,30 @@ void setup() {
   Wire.write(byte(1));
   Wire.endTransmission();
 
+  
+  Wire.beginTransmission(0x1c);
+  Wire.write(byte(56));
+  Wire.write(byte(0));
+  Wire.write(byte(1));
+  Wire.endTransmission();
+  
+
   //SET ALL CHANNELS TO 0
   Wire.beginTransmission(0x1f);
   Wire.write(byte(7));
   Wire.write(byte(0));
   Wire.write(byte(0));
   Wire.endTransmission();
+  //M5.Lcd.print("DAC OK\n");
 
   
+  Wire.beginTransmission(0x1c);
+  Wire.write(byte(7));
+  Wire.write(byte(0));
+  Wire.write(byte(0));
+  Wire.endTransmission();
+
+  /*
   //TEST WRITE TO AD5665R DAC
   Wire.beginTransmission(0x1f);
   Wire.write(byte(0));
@@ -1358,12 +1395,25 @@ void setup() {
   Wire.write(byte(int(65535) >> 8));
   Wire.write(byte(int(65535)));
   Wire.endTransmission();
-
+  */
+  
   pcfr.begin(0x38, &Wire);
   pcfr.pinMode(0, INPUT_PULLUP);
   pcfr.pinMode(1, INPUT_PULLUP);
+  pcfr.pinMode(2, INPUT_PULLUP);
+  pcfr.pinMode(3, INPUT_PULLUP);
+  pcfr.pinMode(4, INPUT_PULLUP);
+  pcfr.pinMode(5, INPUT_PULLUP);
+  pcfr.pinMode(6, INPUT_PULLUP);
+  pcfr.pinMode(7, INPUT_PULLUP);
   pcfr.digitalWrite(0, true);
   pcfr.digitalWrite(1, true);
+  pcfr.digitalWrite(2, true);
+  pcfr.digitalWrite(3, true);
+  pcfr.digitalWrite(4, true);
+  pcfr.digitalWrite(5, true);
+  pcfr.digitalWrite(6, true);
+  pcfr.digitalWrite(7, true);
 
   pcfr0Prev = int(pcfr.digitalRead(0));
   pcfr1Prev = int(pcfr.digitalRead(1));
@@ -1374,14 +1424,39 @@ void setup() {
   pcfw1.begin(0x39, &Wire);
   pcfw1.pinMode(0, OUTPUT);
   pcfw1.pinMode(1, OUTPUT);
+  pcfw1.pinMode(2, OUTPUT);
+  pcfw1.pinMode(3, OUTPUT);
+  pcfw1.pinMode(4, OUTPUT);
+  pcfw1.pinMode(5, OUTPUT);
+  pcfw1.pinMode(6, OUTPUT);
+  pcfw1.pinMode(7, OUTPUT);
   pcfw1.digitalWrite(0, true);
   pcfw1.digitalWrite(1, true);
+  pcfw1.digitalWrite(2, true);
+  pcfw1.digitalWrite(3, true);
+  pcfw1.digitalWrite(4, true);
+  pcfw1.digitalWrite(5, true);
+  pcfw1.digitalWrite(6, true);
+  pcfw1.digitalWrite(7, true);
 
   pcfw2.begin(0x3a, &Wire);
   pcfw2.pinMode(0, OUTPUT);
-  pcfw2.pinMode(1, OUTPUT);
+  //pcfw2.pinMode(1, OUTPUT);
+  //pcfw2.pinMode(2, OUTPUT);
+  //pcfw2.pinMode(3, OUTPUT);
+  //pcfw2.pinMode(4, OUTPUT);
+  //pcfw2.pinMode(5, OUTPUT);
+  //pcfw2.pinMode(6, OUTPUT);
+  //pcfw2.pinMode(7, OUTPUT);
   pcfw2.digitalWrite(0, true);
-  pcfw2.digitalWrite(1, true);
+  //pcfw2.digitalWrite(1, true);
+  //pcfw2.digitalWrite(2, true);
+  //pcfw2.digitalWrite(3, true);
+  //pcfw2.digitalWrite(4, true);
+  //pcfw2.digitalWrite(5, true);
+  //pcfw2.digitalWrite(6, true);
+  //pcfw2.digitalWrite(7, true);
+  //M5.Lcd.print("PCF OK\n");
 
   reconnectMqtt();
   publishDI1();
