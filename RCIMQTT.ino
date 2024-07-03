@@ -1,3 +1,18 @@
+/*
+OFFICIAL RCI DEVICE PROGRAM
+This is the Arduino Program for my Project called "RCI Device." RCI stands for Remote Controlled Input.
+The main functionality of this device revolves around receiving input data from a variety of sensors
+and publishing that information to an MQTT Broker. A second RCI Device will subscribe to those input
+topics and adjust its output ports accordingly. This process will continue to work back and forth between
+the two RCI Devices for as long as they have power. These devices are designed to be separated by long distances
+and connected to the Internet through Ethernet ports. An example of a use case is having one RCI Device in a basement to measure
+temperature and another RCI Device upstairs connected to the house thermostat. The RCI Device in the basement publishes
+temperature data to the MQTT Broker, and the RCI Device upstairs subscribes to the temperature data topic. When the temperature
+in the basement gets too low, the RCI Device upstairs will output to the thermostat to increase the temperature in the house.
+The RCI Device has a maximum capacity of 8 ports for each type of input and output (Digital and Analog) for a total of 32 possible
+channels. The Arduino Program runs on an M5Stack Core2 module with an ESP32 microchip.
+*/
+
 #include <SSLClient.h>
 #include "certificates.h" // This file must be regenerated
 #include <ArduinoMqttClient.h>
@@ -16,69 +31,89 @@ const char broker[]    = "06e8c7b775f1454b8b94fcd788277596.s2.eu.hivemq.cloud";
 int        port        = 8883;
 const char willTopic[] = "arduino/will";
 
-String di1_feed = String("/feeds/di1");
+//### Feeds ###
 
-String di2_feed = String("/feeds/di2");
+String di1_feed = String("/0001/01/di1");
 
-String di3_feed = String("/feeds/di3");
+String di2_feed = String("/0001/01/di2");
 
-String di4_feed = String("/feeds/di4");
+String di3_feed = String("/0001/01/di3");
 
-String di5_feed = String("/feeds/di5");
+String di4_feed = String("/0001/01/di4");
 
-String di6_feed = String("/feeds/di6");
+String di5_feed = String("/0001/01/di5");
 
-String di7_feed = String("/feeds/di7");
+String di6_feed = String("/0001/01/di6");
 
-String di8_feed = String("/feeds/di8");
+String di7_feed = String("/0001/01/di7");
 
-String do1_feed = String("/feeds/do1");
+String di8_feed = String("/0001/01/di8");
 
-String do2_feed = String("/feeds/do2");
+String ai1_feed = String("/0001/01/ai1");
 
-String do3_feed = String("/feeds/do3");
+String ai2_feed = String("/0001/01/ai2");
 
-String do4_feed = String("/feeds/do4");
+String ai3_feed = String("/0001/01/ai3");
 
-String do5_feed = String("/feeds/do5");
+String ai4_feed = String("/0001/01/ai4");
 
-String do6_feed = String("/feeds/do6");
+String ai5_feed = String("/0001/01/ai5");
 
-String do7_feed = String("/feeds/do7");
+String ai6_feed = String("/0001/01/ai6");
 
-String do8_feed = String("/feeds/do8");
+String ai7_feed = String("/0001/01/ai7");
 
-String ai1_feed = String("/feeds/ai1");
+String ai8_feed = String("/0001/01/ai8");
 
-String ai2_feed = String("/feeds/ai2");
+String do1_feed = String("/0001/02/di1");
 
-String ai3_feed = String("/feeds/ai3");
+String do2_feed = String("/0001/02/di2");
 
-String ai4_feed = String("/feeds/ai4");
+String do3_feed = String("/0001/02/di3");
 
-String ai5_feed = String("/feeds/ai5");
+String do4_feed = String("/0001/02/di4");
 
-String ai6_feed = String("/feeds/ai6");
+String do5_feed = String("/0001/02/di5");
 
-String ai7_feed = String("/feeds/ai7");
+String do6_feed = String("/0001/02/di6");
 
-String ai8_feed = String("/feeds/ai8");
+String do7_feed = String("/0001/02/di7");
 
-String ao1_feed = String("/feeds/ao1");
+String do8_feed = String("/0001/02/di8");
 
-String ao2_feed = String("/feeds/ao2");
+String ao1_feed = String("/0001/02/ai1");
 
-String ao3_feed = String("/feeds/ao3");
+String ao2_feed = String("/0001/02/ai2");
 
-String ao4_feed = String("/feeds/ao4");
+String ao3_feed = String("/0001/02/ai3");
 
-String ao5_feed = String("/feeds/ao5");
+String ao4_feed = String("/0001/02/ai4");
 
-String ao6_feed = String("/feeds/ao6");
+String ao5_feed = String("/0001/02/ai5");
 
-String ao7_feed = String("/feeds/ao7");
+String ao6_feed = String("/0001/02/ai6");
 
-String ao8_feed = String("/feeds/ao8");
+String ao7_feed = String("/0001/02/ai7");
+
+String ao8_feed = String("/0001/02/ai8");
+
+/*
+String di1_feed = String("");
+
+String di2_feed = String("");
+
+String do1_feed = String("");
+
+String do2_feed = String("");
+
+String ai1_feed = String("");
+
+String ai2_feed = String("");
+
+String ao1_feed = String("");
+
+String ao2_feed = String("");
+*/
 
 String ds0, ds1, ds2, ds3, ds4, ds5, ds6, ds7;
 String * di_feeds[8];
@@ -86,41 +121,41 @@ String as0, as1, as2, as3, as4, as5, as6, as7;
 String * ai_feeds[8];
 
 //#INITIAL VARIABLES
-String di1_value = String("-1");
-String di2_value = String("-2");
-String di3_value = String("-3");
-String di4_value = String("-4");
-String di5_value = String("-5");
-String di6_value = String("-6");
-String di7_value = String("-7");
-String di8_value = String("-8");
+String di1_value = String("0");
+String di2_value = String("0");
+String di3_value = String("0");
+String di4_value = String("0");
+String di5_value = String("0");
+String di6_value = String("0");
+String di7_value = String("0");
+String di8_value = String("0");
 
-String do1_value = String("-1");
-String do2_value = String("-2");
-String do3_value = String("-3");
-String do4_value = String("-4");
-String do5_value = String("-5");
-String do6_value = String("-6");
-String do7_value = String("-7");
-String do8_value = String("-8");
+String do1_value = String("0");
+String do2_value = String("0");
+String do3_value = String("0");
+String do4_value = String("0");
+String do5_value = String("0");
+String do6_value = String("0");
+String do7_value = String("0");
+String do8_value = String("0");
 
-String ai1_value = String("-1");
-String ai2_value = String("-2");
-String ai3_value = String("-3");
-String ai4_value = String("-4");
-String ai5_value = String("-5");
-String ai6_value = String("-6");
-String ai7_value = String("-7");
-String ai8_value = String("-8");
+String ai1_value = String("0");
+String ai2_value = String("0");
+String ai3_value = String("0");
+String ai4_value = String("0");
+String ai5_value = String("0");
+String ai6_value = String("0");
+String ai7_value = String("0");
+String ai8_value = String("0");
 
-String ao1_value = String("-1");
-String ao2_value = String("-2");
-String ao3_value = String("-3");
-String ao4_value = String("-4");
-String ao5_value = String("-5");
-String ao6_value = String("-6");
-String ao7_value = String("-7");
-String ao8_value = String("-8");
+String ao1_value = String("0");
+String ao2_value = String("0");
+String ao3_value = String("0");
+String ao4_value = String("0");
+String ao5_value = String("0");
+String ao6_value = String("0");
+String ao7_value = String("0");
+String ao8_value = String("0");
 
 unsigned int cycleCounter = 0;
 
@@ -162,6 +197,8 @@ bool rightPressedOnce = false;
 bool rightPressedTwice = false;
 bool rightPressedThree = false;
 int configMenu1Iterator = 0;
+bool firstConfigAo1Press = true;
+int configAo1Counter = 0;
 long configAo1Value = 0;
 long configAo2Value = 0;
 
@@ -238,50 +275,146 @@ void cycleComponentValues() {
   M5.Lcd.setCursor(0, 0);
   if (cycleCounter == 0) {
     M5.Lcd.drawString("Digital Inputs", 40, 0, 1);
-    M5.Lcd.drawString("1: " + di1_value, 0, 40, 1);
-    M5.Lcd.drawString("2: " + di2_value, 0, 80, 1);
-    M5.Lcd.drawString("3: " + di3_value, 0, 120, 1);
-    M5.Lcd.drawString("4: " + di4_value, 0, 160, 1);
-    M5.Lcd.drawString("5: " + di5_value, 170, 40, 1);
-    M5.Lcd.drawString("6: " + di6_value, 170, 80, 1);
-    M5.Lcd.drawString("7: " + di7_value, 170, 120, 1);
-    M5.Lcd.drawString("8: " + di8_value, 170, 160, 1);
+    if (di1_value.toInt() == 0) {
+      M5.Lcd.drawString("1: OFF", 0, 40, 1);
+    }
+    if (di1_value.toInt() == 1) {
+      M5.Lcd.drawString("1: ON", 0, 40, 1);
+    }
+    
+    if (di2_value.toInt() == 0) {
+      M5.Lcd.drawString("2: OFF", 0, 80, 1);
+    }
+    if (di2_value.toInt() == 1) {
+      M5.Lcd.drawString("2: ON", 0, 80, 1);
+    }
+    
+    if (di3_value.toInt() == 0) {
+      M5.Lcd.drawString("3: OFF", 0, 120, 1);
+    }
+    if (di3_value.toInt() == 1) {
+      M5.Lcd.drawString("3: ON", 0, 120, 1);
+    }
+    
+    if (di4_value.toInt() == 0) {
+      M5.Lcd.drawString("4: OFF", 0, 160, 1);
+    }
+    if (di4_value.toInt() == 1) {
+      M5.Lcd.drawString("4: ON", 0, 160, 1);
+    }
+    
+    if (di5_value.toInt() == 0) {
+      M5.Lcd.drawString("5: OFF", 170, 40, 1);
+    }
+    if (di5_value.toInt() == 1) {
+      M5.Lcd.drawString("5: ON", 170, 40, 1);
+    }
+    
+    if (di6_value.toInt() == 0) {
+      M5.Lcd.drawString("6: OFF", 170, 80, 1);
+    }
+    if (di6_value.toInt() == 1) {
+      M5.Lcd.drawString("6: ON", 170, 80, 1);
+    }
+
+    if (di7_value.toInt() == 0) {
+      M5.Lcd.drawString("7: OFF", 170, 120, 1);
+    }
+    if (di7_value.toInt() == 1) {
+      M5.Lcd.drawString("7: ON", 170, 120, 1);
+    }
+    
+    if (di8_value.toInt() == 0) {
+      M5.Lcd.drawString("8: OFF", 170, 160, 1);
+    }
+    if (di8_value.toInt() == 1) {
+      M5.Lcd.drawString("8: ON", 170, 160, 1);
+    }
+    
     M5.Lcd.drawString("CFG", 240, 210, 1);
   }
   if (cycleCounter == 1) {
     M5.Lcd.drawString("Digital Outputs", 30, 0, 1);
-    M5.Lcd.drawString("1: " + do1_value, 0, 40, 1);
-    M5.Lcd.drawString("2: " + do2_value, 0, 80, 1);
-    M5.Lcd.drawString("3: " + do3_value, 0, 120, 1);
-    M5.Lcd.drawString("4: " + do4_value, 0, 160, 1);
-    M5.Lcd.drawString("5: " + do5_value, 170, 40, 1);
-    M5.Lcd.drawString("6: " + do6_value, 170, 80, 1);
-    M5.Lcd.drawString("7: " + do7_value, 170, 120, 1);
-    M5.Lcd.drawString("8: " + do8_value, 170, 160, 1); 
+    if (do1_value.toInt() == 0) {
+      M5.Lcd.drawString("1: OFF", 0, 40, 1);
+    }
+    if (do1_value.toInt() == 1) {
+      M5.Lcd.drawString("1: ON", 0, 40, 1);
+    }
+    
+    if (do2_value.toInt() == 0) {
+      M5.Lcd.drawString("2: OFF", 0, 80, 1);
+    }
+    if (do2_value.toInt() == 1) {
+      M5.Lcd.drawString("2: ON", 0, 80, 1);
+    }
+    
+    if (do3_value.toInt() == 0) {
+      M5.Lcd.drawString("3: OFF", 0, 120, 1);
+    }
+    if (do3_value.toInt() == 1) {
+      M5.Lcd.drawString("3: ON", 0, 120, 1);
+    }
+    
+    if (do4_value.toInt() == 0) {
+      M5.Lcd.drawString("4: OFF", 0, 160, 1);
+    }
+    if (do4_value.toInt() == 1) {
+      M5.Lcd.drawString("4: ON", 0, 160, 1);
+    }
+    
+    if (do5_value.toInt() == 0) {
+      M5.Lcd.drawString("5: OFF", 170, 40, 1);
+    }
+    if (do5_value.toInt() == 1) {
+      M5.Lcd.drawString("5: ON", 170, 40, 1);
+    }
+    
+    if (do6_value.toInt() == 0) {
+      M5.Lcd.drawString("6: OFF", 170, 80, 1);
+    }
+    if (do6_value.toInt() == 1) {
+      M5.Lcd.drawString("6: ON", 170, 80, 1);
+    }
+   
+    if (do7_value.toInt() == 0) {
+      M5.Lcd.drawString("7: OFF", 170, 120, 1);
+    }
+    if (do7_value.toInt() == 1) {
+      M5.Lcd.drawString("7: ON", 170, 120, 1);
+    }
+   
+    if (do8_value.toInt() == 0) {
+      M5.Lcd.drawString("8: OFF", 170, 160, 1);
+    }
+    if (do8_value.toInt() == 1) {
+      M5.Lcd.drawString("8: ON", 170, 160, 1);
+    }
+    
     M5.Lcd.drawString("CFG", 240, 210, 1);   
   }
   if (cycleCounter == 2) {
     M5.Lcd.drawString("Analog Inputs", 40, 0, 1);
-    M5.Lcd.drawString("1: " + String((ai1_value.toFloat() * 2) / 3276.75, 2), 0, 40, 1);
-    M5.Lcd.drawString("2: " + String((ai2_value.toFloat() * 2) / 3276.75, 2), 0, 80, 1);
-    M5.Lcd.drawString("3: " + String((ai3_value.toFloat() * 2) / 3276.75, 2), 0, 120, 1);
-    M5.Lcd.drawString("4: " + String((ai4_value.toFloat() * 2) / 3276.75, 2), 0, 160, 1);
-    M5.Lcd.drawString("5: " + String((ai5_value.toFloat() * 2) / 3276.75, 2), 170, 40, 1);
-    M5.Lcd.drawString("6: " + String((ai6_value.toFloat() * 2) / 3276.75, 2), 170, 80, 1);
-    M5.Lcd.drawString("7: " + String((ai7_value.toFloat() * 2) / 3276.75, 2), 170, 120, 1);
-    M5.Lcd.drawString("8: " + String((ai8_value.toFloat() * 2) / 3276.75, 2), 170, 160, 1);
+    M5.Lcd.drawString("1: " + String(ai1_value.toFloat() / 1600.00, 2), 0, 40, 1);
+    M5.Lcd.drawString("2: " + String(ai2_value.toFloat() / 1600.00, 2), 0, 80, 1);
+    M5.Lcd.drawString("3: " + String(ai3_value.toFloat() / 1600.00, 2), 0, 120, 1);
+    M5.Lcd.drawString("4: " + String(ai4_value.toFloat() / 1600.00, 2), 0, 160, 1);
+    M5.Lcd.drawString("5: " + String(ai5_value.toFloat() / 1600.00, 2), 170, 40, 1);
+    M5.Lcd.drawString("6: " + String(ai6_value.toFloat() / 1600.00, 2), 170, 80, 1);
+    M5.Lcd.drawString("7: " + String(ai7_value.toFloat() / 1600.00, 2), 170, 120, 1);
+    M5.Lcd.drawString("8: " + String(ai8_value.toFloat() / 1600.00, 2), 170, 160, 1);
     M5.Lcd.drawString("CFG", 240, 210, 1);
   }
   if (cycleCounter == 3) {
     M5.Lcd.drawString("Analog Outputs", 40, 0, 1);
-    M5.Lcd.drawString("1: " + String((ao1_value.toFloat() * 2) / 3276.75, 2), 0, 40, 1);
-    M5.Lcd.drawString("2: " + String((ao2_value.toFloat() * 2) / 3276.75, 2), 0, 80, 1);
-    M5.Lcd.drawString("3: " + String((ao3_value.toFloat() * 2) / 3276.75, 2), 0, 120, 1);
-    M5.Lcd.drawString("4: " + String((ao4_value.toFloat() * 2) / 3276.75, 2), 0, 160, 1);
-    M5.Lcd.drawString("5: " + String((ao5_value.toFloat() * 2) / 3276.75, 2), 170, 40, 1);
-    M5.Lcd.drawString("6: " + String((ao6_value.toFloat() * 2) / 3276.75, 2), 170, 80, 1);
-    M5.Lcd.drawString("7: " + String((ao7_value.toFloat() * 2) / 3276.75, 2), 170, 120, 1);
-    M5.Lcd.drawString("8: " + String((ao8_value.toFloat() * 2) / 3276.75, 2), 170, 160, 1);
+    M5.Lcd.drawString("1: " + String(ao1_value.toFloat() / 3276.75, 2), 0, 40, 1);
+    M5.Lcd.drawString("2: " + String(ao2_value.toFloat() / 3276.75, 2), 0, 80, 1);
+    M5.Lcd.drawString("3: " + String(ao3_value.toFloat() / 3276.75, 2), 0, 120, 1);
+    M5.Lcd.drawString("4: " + String(ao4_value.toFloat() / 3276.75, 2), 0, 160, 1);
+    M5.Lcd.drawString("5: " + String(ao5_value.toFloat() / 3276.75, 2), 170, 40, 1);
+    M5.Lcd.drawString("6: " + String(ao6_value.toFloat() / 3276.75, 2), 170, 80, 1);
+    M5.Lcd.drawString("7: " + String(ao7_value.toFloat() / 3276.75, 2), 170, 120, 1);
+    M5.Lcd.drawString("8: " + String(ao8_value.toFloat() / 3276.75, 2), 170, 160, 1);
     M5.Lcd.drawString("CFG", 240, 210, 1);
   }
   cycleCounter++;
@@ -371,20 +504,52 @@ void onLeftRelease() {
   if (configMenu2 && configMenu1Iterator == 4) {
     if (leftRed.isReleased() && leftPressedOnce) {
       leftPressedOnce = false;
+
+      if (firstConfigAo1Press) {
+        firstConfigAo1Press = false;
+      } else {
+        configAo1Counter++;
+        if (configAo1Counter > 5) {
+          configAo1Counter = 0;
+        }
+      }
+
+      if (configAo1Counter == 0) {
+        configAo1Value = 0;
+      }
+
+      if (configAo1Counter == 1) {
+        configAo1Value = 13107;
+      }
+
+      if (configAo1Counter == 2) {
+        configAo1Value = 13107 * 2;
+      }
+
+      if (configAo1Counter == 3) {
+        configAo1Value = 13107 * 3;
+      }
+
+      if (configAo1Counter == 4) {
+        configAo1Value = 13107 * 4;
+      }
+
+      if (configAo1Counter == 5) {
+        configAo1Value = 13107 * 5;
+      }
+
       //mcp.setChannelValue(MCP4728_CHANNEL_A, ((configAo1Value) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
 
+      
       Wire.beginTransmission(0x1f);
       Wire.write(byte(0));
-      Wire.write(byte(int(configAo1Value * 2) >> 8));
-      Wire.write(byte(int(configAo1Value * 2)));
+      Wire.write(byte(int(configAo1Value) >> 8));
+      Wire.write(byte(int(configAo1Value)));
       Wire.endTransmission();
+      
 
-      replaceText(10, 80, 300, 30, 1, String(configAo1Value * 2));
-      configAo1Value += int((32768/5));
-      if (configAo1Value > 32768) {
-        configAo1Value = 0;
-      }
+      replaceText(10, 80, 300, 30, 1, String(configAo1Value));
     }  
   }
 }
@@ -470,20 +635,50 @@ void onCenterRelease() {
   if (configMenu2 && configMenu1Iterator == 4) {
     if (centerRed.isReleased() && centerPressedOnce) {
       centerPressedOnce = false;
+
+      if (firstConfigAo1Press) {
+        firstConfigAo1Press = false;
+      } else {
+        configAo1Counter--;
+        if (configAo1Counter < 0) {
+          configAo1Counter = 5;
+        }
+      }
+
+      if (configAo1Counter == 0) {
+        configAo1Value = 0;
+      }
+
+      if (configAo1Counter == 1) {
+        configAo1Value = 13107;
+      }
+
+      if (configAo1Counter == 2) {
+        configAo1Value = 13107 * 2;
+      }
+
+      if (configAo1Counter == 3) {
+        configAo1Value = 13107 * 3;
+      }
+
+      if (configAo1Counter == 4) {
+        configAo1Value = 13107 * 4;
+      }
+
+      if (configAo1Counter == 5) {
+        configAo1Value = 13107 * 5;
+      }
+
       //mcp.setChannelValue(MCP4728_CHANNEL_A, ((configAo1Value) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
 
       Wire.beginTransmission(0x1f);
       Wire.write(byte(0));
-      Wire.write(byte(int(configAo1Value * 2) >> 8));
-      Wire.write(byte(int(configAo1Value * 2)));
+      Wire.write(byte(int(configAo1Value) >> 8));
+      Wire.write(byte(int(configAo1Value)));
       Wire.endTransmission();
 
-      replaceText(10, 80, 300, 30, 1, String(configAo1Value * 2));
-      configAo1Value -= int((32768/5));
-      if (configAo1Value < 0) {
-        configAo1Value = 32767;
-      }
+      replaceText(10, 80, 300, 30, 1, String(configAo1Value));
     }
   }
 }
@@ -529,24 +724,29 @@ void onRightRelease() {
     if (configMenu1Iterator == 0) {
       normalMode = true;
       M5.Lcd.drawString("NORMAL MODE", 10, 200, 1);
+      firstConfigAo1Press = true;
+      configAo1Counter = 0;
       configAo1Value = 0;
       configAo2Value = 0;
+
       //mcp.setChannelValue(MCP4728_CHANNEL_A, (ai1_value.toInt() * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                  MCP4728_GAIN_2X);
       //mcp.setChannelValue(MCP4728_CHANNEL_B, (ai2_value.toInt() * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                  MCP4728_GAIN_2X);
 
+      
       Wire.beginTransmission(0x1f);
       Wire.write(byte(0));
-      Wire.write(byte(int(ai1_value.toInt() * 2) >> 8));
-      Wire.write(byte(int(ai1_value.toInt() * 2)));
+      Wire.write(byte(ao1_value.toInt() >> 8));
+      Wire.write(byte(ao1_value.toInt()));
       Wire.endTransmission();
 
       Wire.beginTransmission(0x1f);
       Wire.write(byte(1));
-      Wire.write(byte(int(ai2_value.toInt() * 2) >> 8));
-      Wire.write(byte(int(ai2_value.toInt() * 2)));
+      Wire.write(byte(ao2_value.toInt() >> 8));
+      Wire.write(byte(ao2_value.toInt()));
       Wire.endTransmission();
+      
 
       delay(1000);
       M5.Lcd.clear();
@@ -561,6 +761,7 @@ void onRightRelease() {
       M5.Lcd.drawString("DI1 READ VALUE: ", 10, 50, 1);
       M5.Lcd.drawString("DI2 READ VALUE: ", 10, 120, 1);
     }
+
     if (configMenu1Iterator == 2) {
       configMenu2 = true;
       M5.Lcd.clear();
@@ -1764,8 +1965,16 @@ byte nibble(char c) {
   return 0;  // Not a valid hexadecimal character
 }
 
+void toggleResetClock() {
+  digitalWrite(25, HIGH); // sets the digital pin 25 on
+  delay(50);
+  digitalWrite(25, LOW);  // sets the digital pin 25 off
+  delay(50);
+}
+
 /* After M5Core2 is started or reset, the program in the setup() function will be executed, and this part will only be executed once. */
 void setup() {
+  pinMode(25, OUTPUT);
   delay(5000);
 
   M5.begin(); //Init M5Core2. Initialize M5Core2
@@ -1993,8 +2202,8 @@ void setup() {
   pcfr.digitalWrite(6, true);
   pcfr.digitalWrite(7, true);
 
-  pcfr0Prev = int(pcfr.digitalRead(0));
-  pcfr1Prev = int(pcfr.digitalRead(1));
+  //pcfr0Prev = int(pcfr.digitalRead(0));
+  //pcfr1Prev = int(pcfr.digitalRead(1));
 
   //M5.Lcd.drawString(String(pcfr0Prev), 0, 60, 1);
   //M5.Lcd.drawString(String(pcfr1Prev), 0, 90, 1);
@@ -2036,6 +2245,79 @@ void setup() {
   //pcfw2.digitalWrite(7, true);
   //M5.Lcd.print("PCF OK\n");
 
+  adc0Prev = ads1115.readADC_SingleEnded(0);
+  ai1_value = String(adc0Prev);
+  if (adc0Prev < 0) {
+    ai1_value = "0";
+  }
+
+  adc1Prev = ads1115.readADC_SingleEnded(1);
+  ai2_value = String(adc1Prev);
+  if (adc1Prev < 0) {
+    ai2_value = "0";
+  }
+  
+  adc2Prev = ads1115.readADC_SingleEnded(2);
+  ai3_value = String(adc2Prev);
+  if (adc2Prev < 0) {
+    ai3_value = "0";
+  }
+  
+  adc3Prev = ads1115.readADC_SingleEnded(3);
+  ai4_value = String(adc3Prev);
+  if (adc3Prev < 0) {
+    ai4_value = "0";
+  }
+  
+  adc0secondPrev = ads1115second.readADC_SingleEnded(0);
+  ai5_value = String(adc0secondPrev);
+  if (adc0secondPrev < 0) {
+    ai5_value = "0";
+  }
+  
+  adc1secondPrev = ads1115second.readADC_SingleEnded(1);
+  ai6_value = String(adc1secondPrev);
+  if (adc1secondPrev < 0) {
+    ai6_value = "0";
+  }
+  
+  adc2secondPrev = ads1115second.readADC_SingleEnded(2);
+  ai7_value = String(adc2secondPrev);
+  if (adc2secondPrev < 0) {
+    ai7_value = "0";
+  }
+  
+  adc3secondPrev = ads1115second.readADC_SingleEnded(3);
+  ai8_value = String(adc3secondPrev);
+  if (adc3secondPrev < 0) {
+    ai8_value = "0";
+  }
+
+  pcfr0Prev = int(pcfr.digitalRead(0));
+  di1_value = String(pcfr0Prev);
+
+  pcfr1Prev = int(pcfr.digitalRead(1));
+  di2_value = String(pcfr1Prev);
+
+  pcfr2Prev = int(pcfr.digitalRead(2));
+  di3_value = String(pcfr2Prev);
+ 
+  pcfr3Prev = int(pcfr.digitalRead(3));
+  di4_value = String(pcfr3Prev);
+ 
+  pcfr4Prev = int(pcfr.digitalRead(4));
+  di5_value = String(pcfr4Prev);
+
+  pcfr5Prev = int(pcfr.digitalRead(5));
+  di6_value = String(pcfr5Prev);
+
+  pcfr6Prev = int(pcfr.digitalRead(6));
+  di7_value = String(pcfr6Prev);
+
+  pcfr7Prev = int(pcfr.digitalRead(7));
+  di8_value = String(pcfr7Prev);
+
+  /*
   reconnectMqtt();
   publishDI1();
   publishDI2();
@@ -2054,6 +2336,7 @@ void setup() {
   publishAI7();
   publishAI8();
   publishAll();
+  */
   
   /*
   //SCAN I2C BUS
@@ -2140,12 +2423,60 @@ void loop() {
         publishAI2();
       }
 
+      if ((adc2Prev + 100) < ads1115.readADC_SingleEnded(2) || (adc2Prev - 100) > ads1115.readADC_SingleEnded(2)) {
+        publishAI3();
+      }
+
+      if ((adc3Prev + 100) < ads1115.readADC_SingleEnded(3) || (adc3Prev - 100) > ads1115.readADC_SingleEnded(3)) {
+        publishAI4();
+      }
+
+      if ((adc0secondPrev + 100) < ads1115second.readADC_SingleEnded(0) || (adc0secondPrev - 100) > ads1115second.readADC_SingleEnded(0)) {
+        publishAI5();
+      }
+
+      if ((adc1secondPrev + 100) < ads1115second.readADC_SingleEnded(1) || (adc1secondPrev - 100) > ads1115second.readADC_SingleEnded(1)) {
+        publishAI6();
+      }
+
+      if ((adc2secondPrev + 100) < ads1115second.readADC_SingleEnded(2) || (adc2secondPrev - 100) > ads1115second.readADC_SingleEnded(2)) {
+        publishAI7();
+      }
+
+      if ((adc3secondPrev + 100) < ads1115second.readADC_SingleEnded(3) || (adc3secondPrev - 100) > ads1115second.readADC_SingleEnded(3)) {
+        publishAI8();
+      }
+
       if (pcfr0Prev != int(pcfr.digitalRead(0))) {
         publishDI1();
       }
 
       if (pcfr1Prev != int(pcfr.digitalRead(1))) {
         publishDI2();
+      }
+
+      if (pcfr2Prev != int(pcfr.digitalRead(2))) {
+        publishDI3();
+      }
+
+      if (pcfr3Prev != int(pcfr.digitalRead(3))) {
+        publishDI4();
+      }
+
+      if (pcfr4Prev != int(pcfr.digitalRead(4))) {
+        publishDI5();
+      }
+
+      if (pcfr5Prev != int(pcfr.digitalRead(5))) {
+        publishDI6();
+      }
+
+      if (pcfr6Prev != int(pcfr.digitalRead(6))) {
+        publishDI7();
+      }
+
+      if (pcfr7Prev != int(pcfr.digitalRead(7))) {
+        publishDI8();
       }
     }
 
@@ -2178,6 +2509,8 @@ void loop() {
   onLeftRelease();
   onCenterPress();
   onCenterRelease();
+
+  toggleResetClock();
 
   /*
   if (normalMode) {
