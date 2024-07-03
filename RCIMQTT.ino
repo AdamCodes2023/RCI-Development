@@ -606,10 +606,12 @@ void onRightRelease() {
 }
 
 void publishDI1() {
-  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI1!");
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DO1!");
   previousMillis2 = millis();
   clear = true;
-  
+
   pcfr0Prev = int(pcfr.digitalRead(0));
   payload = String(pcfr0Prev);
   di1_value = payload;
@@ -621,15 +623,119 @@ void publishDI1() {
 }
 
 void publishDI2() {
-  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI2!");
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DO2!");
   previousMillis2 = millis();
   clear = true;
-  
+
   pcfr1Prev = int(pcfr.digitalRead(1));
   payload = String(pcfr1Prev);
   di2_value = payload;
 
   mqttClient.beginMessage(di2_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);  
+}
+
+void publishDI3() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI3!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr2Prev = int(pcfr.digitalRead(2));
+  payload = String(pcfr2Prev);
+  di3_value = payload;
+
+  mqttClient.beginMessage(di3_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishDI4() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI4!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr3Prev = int(pcfr.digitalRead(3));
+  payload = String(pcfr3Prev);
+  di4_value = payload;
+
+  mqttClient.beginMessage(di4_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);  
+}
+
+void publishDI5() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI5!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr4Prev = int(pcfr.digitalRead(4));
+  payload = String(pcfr4Prev);
+  di5_value = payload;
+
+  mqttClient.beginMessage(di5_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishDI6() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI6!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr5Prev = int(pcfr.digitalRead(5));
+  payload = String(pcfr5Prev);
+  di6_value = payload;
+
+  mqttClient.beginMessage(di6_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);  
+}
+
+void publishDI7() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI7!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr6Prev = int(pcfr.digitalRead(6));
+  payload = String(pcfr6Prev);
+  di7_value = payload;
+
+  mqttClient.beginMessage(di7_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishDI8() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING DO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING DI8!");
+  previousMillis2 = millis();
+  clear = true;
+
+  pcfr7Prev = int(pcfr.digitalRead(7));
+  payload = String(pcfr7Prev);
+  di8_value = payload;
+
+  mqttClient.beginMessage(di8_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
   mqttClient.endMessage();
   delay(500);  
@@ -1461,6 +1567,12 @@ void setup() {
   reconnectMqtt();
   publishDI1();
   publishDI2();
+  publishDI3();
+  publishDI4();
+  publishDI5();
+  publishDI6();
+  publishDI7();
+  publishDI8();
   publishAI1();
   publishAI2();
   publishAll();
