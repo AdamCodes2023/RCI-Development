@@ -52,33 +52,33 @@ String ai1_feed = String("/feeds/ai1");
 
 String ai2_feed = String("/feeds/ai2");
 
-String ai3_feed = String("");
+String ai3_feed = String("/feeds/ai3");
 
-String ai4_feed = String("");
+String ai4_feed = String("/feeds/ai4");
 
-String ai5_feed = String("");
+String ai5_feed = String("/feeds/ai5");
 
-String ai6_feed = String("");
+String ai6_feed = String("/feeds/ai6");
 
-String ai7_feed = String("");
+String ai7_feed = String("/feeds/ai7");
 
-String ai8_feed = String("");
+String ai8_feed = String("/feeds/ai8");
 
 String ao1_feed = String("/feeds/ao1");
 
 String ao2_feed = String("/feeds/ao2");
 
-String ao3_feed = String("");
+String ao3_feed = String("/feeds/ao3");
 
-String ao4_feed = String("");
+String ao4_feed = String("/feeds/ao4");
 
-String ao5_feed = String("");
+String ao5_feed = String("/feeds/ao5");
 
-String ao6_feed = String("");
+String ao6_feed = String("/feeds/ao6");
 
-String ao7_feed = String("");
+String ao7_feed = String("/feeds/ao7");
 
-String ao8_feed = String("");
+String ao8_feed = String("/feeds/ao8");
 
 String ds0, ds1, ds2, ds3, ds4, ds5, ds6, ds7;
 String * di_feeds[8];
@@ -1084,7 +1084,7 @@ void onMqttMessage(int messageSize) {
     //M5.Lcd.drawString(di2_value, 90, 40, 2);
     //replaceText(90, 40, 300, 50, 2 di2_value);
   }
-  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai1")) {
     if ((message.toInt()) < 0) {
       
       Wire.beginTransmission(0x1f);
@@ -1092,27 +1092,42 @@ void onMqttMessage(int messageSize) {
       Wire.write(byte(0));
       Wire.write(byte(0));
       Wire.endTransmission();
+      
 
       //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
-
+      
       ao1_value = "0";
+
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
     }
     else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
       
       Wire.beginTransmission(0x1f);
       Wire.write(byte(0));
-      Wire.write(byte(int(message.toInt() * 2) >> 8));
-      Wire.write(byte(int(message.toInt() * 2)));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
       Wire.endTransmission();
+      
 
       //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
-
-      ao1_value = message;
+      
+      ao1_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
     }
   }
-  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO2")) {
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai2")) {
     if ((message.toInt()) < 0) {
       
       Wire.beginTransmission(0x1f);
@@ -1121,23 +1136,296 @@ void onMqttMessage(int messageSize) {
       Wire.write(byte(0));
       Wire.endTransmission();
       
+      
       //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
-
+      
       ao2_value = "0";
+
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
     }
     else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
       
       Wire.beginTransmission(0x1f);
       Wire.write(byte(1));
-      Wire.write(byte(int(message.toInt() * 2) >> 8));
-      Wire.write(byte(int(message.toInt() * 2)));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
       Wire.endTransmission();
+      
 
       //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
       //                MCP4728_GAIN_2X);
+      
+      ao2_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai3")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(2));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
 
-      ao2_value = message;
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao3_value = "0";
+
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(2));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao3_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai4")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(3));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+      
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao4_value = "0";
+
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1f);
+      Wire.write(byte(3));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao4_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai5")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao5_value = "0";
+
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(0));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao5_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai6")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(1));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+      
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao6_value = "0";
+
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(1));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao6_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai7")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(2));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao7_value = "0";
+
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(2));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_A, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao7_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 80, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai1_value, 90, 80, 2);
+      //replaceText(90, 80, 300, 50, 2 ai1_value);
+    }
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("ai8")) {
+    if ((message.toInt()) < 0) {
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(3));
+      Wire.write(byte(0));
+      Wire.write(byte(0));
+      Wire.endTransmission();
+      
+      
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, 0 >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao8_value = "0";
+
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
+    }
+    else {
+
+      int aoSendValue = int(message.toInt() * 2.048);
+      if (aoSendValue > 65535) {
+        aoSendValue = 65535;
+      }
+      
+      Wire.beginTransmission(0x1c);
+      Wire.write(byte(3));
+      Wire.write(byte(aoSendValue >> 8));
+      Wire.write(byte(aoSendValue));
+      Wire.endTransmission();
+      
+
+      //mcp.setChannelValue(MCP4728_CHANNEL_B, ((message.toInt()) * 2) >> 4, MCP4728_VREF_INTERNAL,
+      //                MCP4728_GAIN_2X);
+      
+      ao8_value = String(aoSendValue);
+      
+      //M5.Lcd.fillRect(90, 120, 300, 50, BLACK);
+      //M5.Lcd.drawString(ai2_value, 90, 120, 2);
+      //replaceText(90, 120, 300, 50, 2 ai2_value);
     }
   }
 }
