@@ -742,10 +742,12 @@ void publishDI8() {
 }
 
 void publishAI1() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO1!", 10, 200, 1);
   replaceText(10, 200, 300, 50, 1, "PUBLISHING AI1");
   previousMillis2 = millis();
   clear = true;
-  
+
   adc0 = ads1115.readADC_SingleEnded(0);
   adc0Prev = adc0;
   payload = String(adc0);
@@ -758,16 +760,126 @@ void publishAI1() {
 }
 
 void publishAI2() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO2!", 10, 200, 1);
   replaceText(10, 200, 300, 50, 1, "PUBLISHING AI2!");
   previousMillis2 = millis();
   clear = true;
-  
+
   adc1 = ads1115.readADC_SingleEnded(1);
   adc1Prev = adc1;
   payload = String(adc1);
   ai2_value = payload;
 
   mqttClient.beginMessage(ai2_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI3() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI3");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc2 = ads1115.readADC_SingleEnded(2);
+  adc2Prev = adc2;
+  payload = String(adc2);
+  ai3_value = payload;
+
+  mqttClient.beginMessage(ai3_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI4() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI4!");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc3 = ads1115.readADC_SingleEnded(3);
+  adc3Prev = adc3;
+  payload = String(adc3);
+  ai4_value = payload;
+
+  mqttClient.beginMessage(ai4_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI5() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI5");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc0second = ads1115second.readADC_SingleEnded(0);
+  adc0secondPrev = adc0second;
+  payload = String(adc0second);
+  ai5_value = payload;
+
+  mqttClient.beginMessage(ai5_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI6() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI6!");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc1second = ads1115second.readADC_SingleEnded(1);
+  adc1secondPrev = adc1second;
+  payload = String(adc1second);
+  ai6_value = payload;
+
+  mqttClient.beginMessage(ai6_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI7() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO1!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI7");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc2second = ads1115second.readADC_SingleEnded(2);
+  adc2secondPrev = adc2second;
+  payload = String(adc2second);
+  ai7_value = payload;
+
+  mqttClient.beginMessage(ai7_feed, payload.length(), retained, qos, duplicateMqttMessage);
+  mqttClient.print(payload);
+  mqttClient.endMessage();
+  delay(500);
+}
+
+void publishAI8() {
+  //M5.Lcd.fillRect(10, 200, 300, 50, BLACK);
+  //M5.Lcd.drawString("PUBLISHING AO2!", 10, 200, 1);
+  replaceText(10, 200, 300, 50, 1, "PUBLISHING AI8!");
+  previousMillis2 = millis();
+  clear = true;
+
+  adc3second = ads1115second.readADC_SingleEnded(3);
+  adc3secondPrev = adc3second;
+  payload = String(adc3second);
+  ai8_value = payload;
+
+  mqttClient.beginMessage(ai8_feed, payload.length(), retained, qos, duplicateMqttMessage);
   mqttClient.print(payload);
   mqttClient.endMessage();
   delay(500);
@@ -785,9 +897,33 @@ void publishAll() {
 
   publishDI2();
 
+  publishDI3();
+
+  publishDI4();
+
+  publishDI5();
+
+  publishDI6();
+
+  publishDI7();
+
+  publishDI8();
+
   publishAI1();
 
   publishAI2();
+  
+  publishAI3();
+
+  publishAI4();
+  
+  publishAI5();
+
+  publishAI6();
+  
+  publishAI7();
+
+  publishAI8();
 
   reconnectCount++;
 }
@@ -1575,6 +1711,12 @@ void setup() {
   publishDI8();
   publishAI1();
   publishAI2();
+  publishAI3();
+  publishAI4();
+  publishAI5();
+  publishAI6();
+  publishAI7();
+  publishAI8();
   publishAll();
   
   /*
