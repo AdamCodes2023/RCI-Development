@@ -1590,36 +1590,157 @@ void loop() {
   onCenterRelease();
 
   /*
-  //TEST PCF8574 DIGITAL IO FUNCTIONALITY
-  int pcfr0Test = int(pcfr.digitalRead(0));
-  int pcfr1Test = int(pcfr.digitalRead(1));
+  if (normalMode) {
+    //TEST PCF8574 DIGITAL IO FUNCTIONALITY
+    int pcfr0Test = int(pcfr.digitalRead(0));
+    int pcfr1Test = int(pcfr.digitalRead(1));
+    int pcfr2Test = int(pcfr.digitalRead(2));
+    int pcfr3Test = int(pcfr.digitalRead(3));
+    int pcfr4Test = int(pcfr.digitalRead(4));
+    int pcfr5Test = int(pcfr.digitalRead(5));
+    int pcfr6Test = int(pcfr.digitalRead(6));
+    int pcfr7Test = int(pcfr.digitalRead(7));
 
-  pcfw1.digitalWrite(0, !bool(pcfr0Test));
-  pcfw1.digitalWrite(1, !bool(pcfr1Test));
+    pcfw1.digitalWrite(0, !bool(pcfr0Test));
+    pcfw1.digitalWrite(1, !bool(pcfr1Test));
+    pcfw1.digitalWrite(2, !bool(pcfr2Test));
+    pcfw1.digitalWrite(3, !bool(pcfr3Test));
+    pcfw1.digitalWrite(4, !bool(pcfr4Test));
+    pcfw1.digitalWrite(5, !bool(pcfr5Test));
+    pcfw1.digitalWrite(6, !bool(pcfr6Test));
+    pcfw1.digitalWrite(7, !bool(pcfr7Test));
 
-  pcfw2.digitalWrite(0, !bool(pcfr0Test));
-  //pcfw2.digitalWrite(1, !bool(pcfr1Test));
-  */
+    pcfw2.digitalWrite(0, !bool(pcfr7Test));
+    //pcfw2.digitalWrite(1, !bool(pcfr7Test));
+
+
+    //TEST ADS1115 ADC AND AD5665R DAC SCALABILITY
+    int testadc0 = ads1115.readADC_SingleEnded(0);
+
+    M5.Lcd.drawString(String(testadc0), 0, 210, 1);
+    //M5.Lcd.drawString(String(int(testadc0 * 2.048)), 0, 210, 1);
+    //M5.Lcd.drawString(String(int(testadc1 * 2.048)), 0, 210, 1);
+
+    testadc0 = int(testadc0 * 2.048);
+    if (testadc0 < 0) {
+      testadc0 = 0;
+    }
+    if (testadc0 > 65535) {
+      testadc0 = 65535;
+    }
+
+    int testadc1 = ads1115.readADC_SingleEnded(1);
+    testadc1 = int(testadc1 * 2.048);
+    if (testadc1 < 0) {
+      testadc1 = 0;
+    }
+    if (testadc1 > 65535) {
+      testadc1 = 65535;
+    }
+
+    int testadc2 = ads1115.readADC_SingleEnded(2);
+    testadc2 = int(testadc2 * 2.048);
+    if (testadc2 < 0) {
+      testadc2 = 0;
+    }
+    if (testadc2 > 65535) {
+      testadc2 = 65535;
+    }
+
+    int testadc3 = ads1115.readADC_SingleEnded(3);
+    testadc3 = int(testadc3 * 2.048);
+    if (testadc3 < 0) {
+      testadc3 = 0;
+    }
+    if (testadc3 > 65535) {
+      testadc3 = 65535;
+    }
+
+    int testadc4 = ads1115second.readADC_SingleEnded(0);
+    testadc4 = int(testadc4 * 2.048);
+    if (testadc4 < 0) {
+      testadc4 = 0;
+    }
+    if (testadc4 > 65535) {
+      testadc4 = 65535;
+    }
+
+    int testadc5 = ads1115second.readADC_SingleEnded(1);
+    testadc5 = int(testadc5 * 2.048);
+    if (testadc5 < 0) {
+      testadc5 = 0;
+    }
+    if (testadc5 > 65535) {
+      testadc5 = 65535;
+    }
+
+    int testadc6 = ads1115second.readADC_SingleEnded(2);
+    testadc6 = int(testadc6 * 2.048);
+    if (testadc6 < 0) {
+      testadc6 = 0;
+    }
+    if (testadc6 > 65535) {
+      testadc6 = 65535;
+    }
+
+    int testadc7 = ads1115second.readADC_SingleEnded(3);
+    testadc7 = int(testadc7 * 2.048);
+    if (testadc7 < 0) {
+      testadc7 = 0;
+    }
+    if (testadc7 > 65535) {
+      testadc7 = 65535;
+    }
+
+
+    Wire.beginTransmission(0x1f);
+    Wire.write(byte(0));
+    Wire.write(byte(testadc0 >> 8));
+    Wire.write(byte(testadc0));
+    Wire.endTransmission();
   
-  /*
-  //TEST ADS1115 ADC AND AD5665R DAC SCALABILITY
-  int testadc0 = ads1115.readADC_SingleEnded(0);
-  int testadc1 = ads1115.readADC_SingleEnded(1);
+    Wire.beginTransmission(0x1f);
+    Wire.write(byte(1));
+    Wire.write(byte(testadc1 >> 8));
+    Wire.write(byte(testadc1));
+    Wire.endTransmission();
 
-  M5.Lcd.drawString(String(testadc0 * 2), 0, 180, 1);
-  M5.Lcd.drawString(String(testadc1 * 2), 0, 210, 1);
+    Wire.beginTransmission(0x1f);
+    Wire.write(byte(2));
+    Wire.write(byte(testadc2 >> 8));
+    Wire.write(byte(testadc2));
+    Wire.endTransmission();
+  
+    Wire.beginTransmission(0x1f);
+    Wire.write(byte(3));
+    Wire.write(byte(testadc3 >> 8));
+    Wire.write(byte(testadc3));
+    Wire.endTransmission();
 
-  Wire.beginTransmission(0x1f);
-  Wire.write(byte(0));
-  Wire.write(byte(int(testadc0 * 2) >> 8));
-  Wire.write(byte(int(testadc0 * 2)));
-  Wire.endTransmission();
+    Wire.beginTransmission(0x1c);
+    Wire.write(byte(0));
+    Wire.write(byte(testadc4 >> 8));
+    Wire.write(byte(testadc4));
+    Wire.endTransmission();
+  
+    Wire.beginTransmission(0x1c);
+    Wire.write(byte(1));
+    Wire.write(byte(testadc5 >> 8));
+    Wire.write(byte(testadc5));
+    Wire.endTransmission();
 
-  Wire.beginTransmission(0x1f);
-  Wire.write(byte(1));
-  Wire.write(byte(int(testadc1 * 2) >> 8));
-  Wire.write(byte(int(testadc1 * 2)));
-  Wire.endTransmission();
+    Wire.beginTransmission(0x1c);
+    Wire.write(byte(2));
+    Wire.write(byte(testadc6 >> 8));
+    Wire.write(byte(testadc6));
+    Wire.endTransmission();
+  
+    Wire.beginTransmission(0x1c);
+    Wire.write(byte(3));
+    Wire.write(byte(testadc7 >> 8));
+    Wire.write(byte(testadc7));
+    Wire.endTransmission();
+  }
   */
   
 }
