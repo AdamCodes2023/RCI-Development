@@ -20,33 +20,33 @@ String di1_feed = String("/feeds/di1");
 
 String di2_feed = String("/feeds/di2");
 
-String di3_feed = String("");
+String di3_feed = String("/feeds/di3");
 
-String di4_feed = String("");
+String di4_feed = String("/feeds/di4");
 
-String di5_feed = String("");
+String di5_feed = String("/feeds/di5");
 
-String di6_feed = String("");
+String di6_feed = String("/feeds/di6");
 
-String di7_feed = String("");
+String di7_feed = String("/feeds/di7");
 
-String di8_feed = String("");
+String di8_feed = String("/feeds/di8");
 
 String do1_feed = String("/feeds/do1");
 
 String do2_feed = String("/feeds/do2");
 
-String do3_feed = String("");
+String do3_feed = String("/feeds/do3");
 
-String do4_feed = String("");
+String do4_feed = String("/feeds/do4");
 
-String do5_feed = String("");
+String do5_feed = String("/feeds/do5");
 
-String do6_feed = String("");
+String do6_feed = String("/feeds/do6");
 
-String do7_feed = String("");
+String do7_feed = String("/feeds/do7");
 
-String do8_feed = String("");
+String do8_feed = String("/feeds/do8");
 
 String ai1_feed = String("/feeds/ai1");
 
@@ -1028,13 +1028,61 @@ void onMqttMessage(int messageSize) {
     message += ((char)mqttClient.read());
   }
 
-  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO1")) {
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di1")) {
     pcfw1.digitalWrite(0, !bool(message.toInt()));
     do1_value = message;
+    //M5.Lcd.fillRect(90, 0, 300, 50, BLACK);
+    //M5.Lcd.drawString(di1_value, 90, 0, 2);
+    //replaceText(90, 0, 300, 50, 2 di1_value);
   }
-  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("DO2")) {
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di2")) {
     pcfw1.digitalWrite(1, !bool(message.toInt()));
     do2_value = message;
+    //M5.Lcd.fillRect(90, 40, 300, 50, BLACK);
+    //M5.Lcd.drawString(di2_value, 90, 40, 2);
+    //replaceText(90, 40, 300, 50, 2 di2_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di3")) {
+    pcfw1.digitalWrite(2, !bool(message.toInt()));
+    do3_value = message;
+    //M5.Lcd.fillRect(90, 0, 300, 50, BLACK);
+    //M5.Lcd.drawString(di1_value, 90, 0, 2);
+    //replaceText(90, 0, 300, 50, 2 di1_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di4")) {
+    pcfw1.digitalWrite(3, !bool(message.toInt()));
+    do4_value = message;
+    //M5.Lcd.fillRect(90, 40, 300, 50, BLACK);
+    //M5.Lcd.drawString(di2_value, 90, 40, 2);
+    //replaceText(90, 40, 300, 50, 2 di2_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di5")) {
+    pcfw1.digitalWrite(4, !bool(message.toInt()));
+    do5_value = message;
+    //M5.Lcd.fillRect(90, 0, 300, 50, BLACK);
+    //M5.Lcd.drawString(di1_value, 90, 0, 2);
+    //replaceText(90, 0, 300, 50, 2 di1_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di6")) {
+    pcfw1.digitalWrite(5, !bool(message.toInt()));
+    do6_value = message;
+    //M5.Lcd.fillRect(90, 40, 300, 50, BLACK);
+    //M5.Lcd.drawString(di2_value, 90, 40, 2);
+    //replaceText(90, 40, 300, 50, 2 di2_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di7")) {
+    pcfw1.digitalWrite(6, !bool(message.toInt()));
+    do7_value = message;
+    //M5.Lcd.fillRect(90, 0, 300, 50, BLACK);
+    //M5.Lcd.drawString(di1_value, 90, 0, 2);
+    //replaceText(90, 0, 300, 50, 2 di1_value);
+  }
+  if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("di8")) {
+    pcfw1.digitalWrite(7, !bool(message.toInt()));
+    do8_value = message;
+    //M5.Lcd.fillRect(90, 40, 300, 50, BLACK);
+    //M5.Lcd.drawString(di2_value, 90, 40, 2);
+    //replaceText(90, 40, 300, 50, 2 di2_value);
   }
   if (topic.substring(topic.length() - 3, topic.length()).equalsIgnoreCase("AO1")) {
     if ((message.toInt()) < 0) {
