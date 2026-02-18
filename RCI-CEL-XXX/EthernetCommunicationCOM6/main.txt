@@ -1,0 +1,123 @@
+from m5stack import *  
+from m5stack_ui import *
+from uiflow import *
+import wifiCfg
+from machine import I2C, Pin, Timer, SPI
+import time
+import module
+#from libs.ethernet.wiznet5k import WIZNET5K
+#import libs.ethernet.wiznet5k_socket as socket
+from m5mqtt import M5mqtt
+import random
+import network
+from flow import ezdata
+
+def subscribe_to_STUFF_(topic, payload):
+  global topic_data, payload_data
+  topic_data = topic
+  payload_data = payload
+  lcd.textClear(0, 10, 'TOPIC DATA: AAAAAAAAAAAAAAAAAAA', 0x00ffff)
+  lcd.text(0, 10, 'TOPIC DATA: ' + str(payload_data), lcd.ORANGE)
+  pass
+
+
+power.setBusPowerMode(0)
+screen = M5Screen()
+screen.clean_screen()
+screen.set_screen_bg_color(0x00ffff)
+lcd.font(lcd.FONT_DejaVu24)
+
+lan = module.get(module.LANBASE)
+eth0ip = lan.get_if_config()[0]
+#lan.mqtt_disconnect()
+#nic = network.LAN(0)
+
+#WIFI COMMUNICATION
+#wifiCfg.doConnect('MARS', 'M.A.R.S.')
+
+#while not (wifiCfg.wlan_sta.isconnected()):
+  #time.sleep(1.0)
+
+#EZDATA
+#ezdata.setData('6HW5Bk4kasIF38AeWS4jUuaM2d5FkBHd', 'PTest', 'Hello')
+
+#ETHERNET COMMUNICATION
+'''
+lan.mqtt_config('192.168.12.238', 1883, 'ADAMS', '', '', 300)
+#lan.mqtt_config('93db6fd8848e457c81743a4ef6480e4a.s2.eu.hivemq.cloud', 8883, 'ADAMS', 'ADAMS', 'TeNNIS19', 300, ssl = True, ssl_params = {'server_hostname':'93db6fd8848e457c81743a4ef6480e4a.s2.eu.hivemq.cloud'})
+#lan.mqtt_config('test.mosquitto.org', 1883, 'ADAMS224', '', '', 300)
+#lan.mqtt_config('b37.mqtt.one', 1883, 'ADAMS2', '6chjwy3513', '169abfjmop', 300)
+lan.mqtt_subscribe('STUFF', subscribe_to_STUFF_, 0)
+lan.mqtt_connect()
+while not (lan.mqtt_is_connect()):
+  time.sleep(1.0)
+lcd.text(0, 180, 'SUBSCRIBED', lcd.ORANGE)
+#lcd.text(0, 200, eth0ip, lcd.ORANGE)
+'''
+
+'''
+lan.tcp_udp_config(str(eth0ip), 4711, 1, 2)
+time.sleep(1.0)
+lcd.text(0, 50, 'TCP Connected', lcd.ORANGE)
+lcd.text(0, 100, 'L: ' + str(lan.local_ip()), lcd.ORANGE)
+lcd.text(0, 150, 'R: ' + str(lan.remote_ip()), lcd.ORANGE)
+'''
+#lcd.text(0, 100, str(lan.get_if_config()), lcd.ORANGE)
+
+#time.sleep(10.0)
+
+#lan.udp_send_packet('192.168.1.131', 55005, '123')
+#lcd.text(0, 175, 'SENT', lcd.ORANGE)
+
+
+'''
+nic = network.WIZNET5K(SPI.init(1000000, 0, 0, 8, SPI.MSB, Pin(18), Pin(23), Pin(19),), Pin(26), Pin(13))
+if not nic.isconnected():
+    nic.connect()
+    #print("Waiting for connection...")
+    while not nic.isconnected():
+        time.sleep(1)
+lcd.text(0, 50, nic.ifconfig(), lcd.ORANGE)
+#screen.clean_screen()
+#screen.set_screen_bg_color(0x00ffff)
+'''
+
+'''
+spi = SPI(2)
+cs = Pin(26,Pin.OUT)
+rst=Pin(13)
+nic = WIZNET5K(1,26,13)
+'''
+
+#MQTT COMMUNICATION
+#TUYALINK
+#m5mqtt = M5mqtt('tuyalink_26a523c0a8778051d6ti0u', '42.192.34.178', 8883, '26a523c0a8778051d6ti0u|signMethod=hmacSha256,timestamp=1691606341,secureMode=1,accessType=1', '5f9001293b79b46c64370296ccfad9480d161a75cc843cf81ffe2da169be2591', 60, ssl = True)
+#HIVEMQ
+'''
+m5mqtt = M5mqtt('ADAMS', '93db6fd8848e457c81743a4ef6480e4a.s2.eu.hivemq.cloud', 8883, 'ADAMS', 'TeNNIS19', 300, ssl = True, ssl_params = {'server_hostname':'93db6fd8848e457c81743a4ef6480e4a.s2.eu.hivemq.cloud'})
+m5mqtt.start()
+
+time.sleep(1.0)
+
+lcd.text(0, 180, 'PUBLISHED', lcd.ORANGE)
+
+x = 0
+
+while x < 10:
+  m5mqtt.publish('STUFF', str(random.randint(0, 100000)), 0)
+  time.sleep(1.0)
+  x += 1
+
+lcd.text(0, 10, 'DONE', lcd.ORANGE)
+'''
+
+'''
+x = 0
+while x < 10:
+    #lcd.text(10, 120, str(getP2PData()), lcd.ORANGE)
+    lcd.text(10, 120, 'PRIBUSIN', lcd.ORANGE)
+    time.sleep(1.0)
+    #lcd.textClear(10, 120, str(getP2PData()), 0x00ffff)
+    lcd.text(10, 120, 'PRIBUSIN', lcd.ORANGE)
+    x += 1
+'''

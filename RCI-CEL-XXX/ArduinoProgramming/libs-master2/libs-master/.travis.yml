@@ -1,0 +1,63 @@
+---
+# Copyright (C) 2015 PSP2SDK Project
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+sudo: false
+
+addons:
+ apt:
+  packages:
+   - doxygen
+   - graphviz
+
+cache:
+ directories:
+   - $HOME/devkitPro
+
+before_install:
+ - curl -Ls https://download.sourceforge.net/devkitpro/devkitARMupdate.pl | perl; true
+
+ - set -e
+
+ - git clone -q --single-branch -b all "https://$TOKEN@github.com/psp2sdk/psp2sdk.git" $DIST | sed s/$TOKEN/\${TOKEN}/g
+ - git -C $DIST rm -qrf psp2sdk
+
+ - git clone -q --single-branch "https://$TOKEN@github.com/psp2sdk/psp2sdk.github.io" html | sed s/$TOKEN/\${TOKEN}/g
+ - git -C html rm -qrf .
+
+script:
+ - aclocal
+ - automake --add-missing
+ - autoconf
+
+ - ./configure -q --host=arm-none-eabi --with-multilib=$PWD --prefix="$PREFIX"
+ - doxygen
+ - make install -j4
+
+after_success:
+ - export REV=dirty-$(git describe --always)
+ - git config --global user.name "Travis CI"
+ - git config --global user.email contact@travis-ci.com
+
+ - pushd $DIST
+ - git add -f psp2sdk
+ - git commit -qam "libs $REV"
+ - git push -q origin | sed s/$TOKEN/\${TOKEN}/g
+ - popd
+
+ - cd html
+ - git add -f .
+ - git commit -qam $REV
+ - git push -q origin | sed s/$TOKEN/\${TOKEN}/g
+
+env:
+ global:
+  - DEVKITPRO="$HOME/devkitPro"
+  - DEVKITARM="$DEVKITPRO/devkitARM"
+  - PATH="$PATH:$DEVKITARM/bin"
+  - DIST="$PWD/dist"
+  - PREFIX="$DIST/psp2sdk"
+  - secure: "m0cIefqSHyWzUpBVAXom0nJfj9/uK6S3U8rNtPgH+slybncLd0WpyOHjiarDypIuIEksBd75DwuIpDSXa6fgldOJbQp3d7VuyfvAxW/j/Nf+4Diih/INrwF8GeQgWVkpkGrge7YomiJdXQjW9bd0CEJhtuA309Z2VkIJSXfxGDNJSEgmvObQbNptKLsoz/C9u5IW2eH892SDiltUomEFmIEntElJK00bJjfymHecsnbJtScw0okk2fzvr3CU3TkGjRYp7h4NRVHjhQYgiadNElc2yc0UUEFvqvq2uFj3dGT7ro/u6YdRVsQf2ej7TJwHdwmTmh5BOS3w9unbUpZ+PvfdKUSuuJezC8juDL4AoEJr9vgncS6CBdlwIcN1pj/b0EPueI1PaIXGaLDDMzjfuDcJ2TxPpH6J9hGluShkuXG84NrKjcxvziPWvp9XIEascyd9t3bLc+1ds9uVz5dy2kLyUsQ3cz6aiMN+9B3vRZmqKfvvgENw70sC4ZDDztqxr5a7QRbiJHI6LlI2D7QceJ8ZL2u+AUnEq3pZQEXuj+SWXoVx4IzoLzKQi6ecvHf3r7A3eHRh5O7SfLMuJWBSEoCFNmfpTcZAquSYZcABPw5zmXGDEiRQTnRadXn0d6VXEOz6MgiFLfuPNHAnPc57PqJ8d6TOPsC4oz034zALn84="
