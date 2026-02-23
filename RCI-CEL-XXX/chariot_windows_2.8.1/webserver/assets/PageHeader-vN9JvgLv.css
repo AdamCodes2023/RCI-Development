@@ -1,0 +1,1 @@
+.chariot-header{display:flex;flex-direction:row;margin:16px 0;height:35px}.chariot-header .chariot-header-body{display:flex;flex-direction:row}.chariot-header .chariot-header-icon{font-size:32px}.chariot-header .chariot-header-title{font-size:32px;margin:0 8px}.chariot-header .chariot-header-help{cursor:pointer}.chariot-header-help-popover{width:300px}

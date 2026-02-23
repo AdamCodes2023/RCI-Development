@@ -1,0 +1,111 @@
+dn: dc=com
+objectClass: domain
+objectClass: top
+dc: com
+
+dn: dc=cirruslink,dc=com
+objectClass: domain
+objectClass: top
+dc: cirruslink
+
+# Chariot Users
+dn: ou=users,dc=cirruslink,dc=com
+ou: users
+description: users
+objectclass: organizationalunit
+
+dn: uid=jdoe,ou=users,dc=cirruslink,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+uid: jdoe
+cn: John Doe
+givenName: John
+sn: Doe
+mail: jdoe@example.com
+description: Created for Chariot Testing
+userPassword: 123456
+
+dn: uid=bsmith,ou=users,dc=cirruslink,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+uid: bsmith
+cn: Bob Smith
+givenName: Bob
+sn: Smith
+mail: bsmith@example.com
+description: Created for Chariot Testing
+userPassword: 123456
+
+# Chariot Groups (Roles)
+dn: ou=groups,dc=cirruslink,dc=com
+ou: groups
+objectClass: organizationalUnit
+objectClass: top
+
+dn: cn=group1,ou=groups,dc=cirruslink,dc=com
+cn: group1
+objectClass: groupOfNames
+objectClass: top
+member: uid=jdoe,ou=users,dc=cirruslink,dc=com
+
+dn: cn=group2,ou=groups,dc=cirruslink,dc=com
+cn: group2
+objectClass: groupOfNames
+objectClass: top
+member: uid=bsmith,ou=users,dc=cirruslink,dc=com
+
+# Chariot MQTT Credentials
+dn: ou=credentials,dc=cirruslink,dc=com
+ou: credentials
+objectClass: organizationalUnit
+objectClass: top
+
+dn: uid=edge1,ou=credentials,dc=cirruslink,dc=com
+objectClass: cls-mqttCredential
+objectClass: uidObject
+objectClass: person
+objectClass: top
+uid: edge1
+cn: Edge One
+sn: Example
+userPassword: pass1
+cls-subTopicFilter: '#'
+cls-pubTopicFilter: '#'
+
+dn: uid=edge2,ou=credentials,dc=cirruslink,dc=com
+objectClass: cls-mqttCredential
+objectClass: uidObject
+objectClass: person
+objectClass: top
+uid: edge2
+cn: Edge Two
+sn: Example
+userPassword: pass2
+cls-pubTopicFilter: 'a/#'
+
+dn: uid=edge3,ou=credentials,dc=cirruslink,dc=com
+objectClass: cls-mqttCredential
+objectClass: uidObject
+objectClass: person
+objectClass: top
+uid: edge3
+cn: Edge Three
+sn: Example
+userPassword: pass3
+cls-subTopicFilter: 'a/#'
+
+dn: uid=edge4,ou=credentials,dc=cirruslink,dc=com
+objectClass: cls-mqttCredential
+objectClass: uidObject
+objectClass: person
+objectClass: top
+uid: edge4
+cn: Edge Four
+sn: Example
+userPassword: pass4
+cls-pubTopicFilter: 'a/#'
+cls-subTopicFilter: 'a/#'

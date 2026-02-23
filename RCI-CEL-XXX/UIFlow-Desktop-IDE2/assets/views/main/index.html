@@ -1,0 +1,66 @@
+<html lang="en"><head><style>:root{--main-hue:214;--bg-color:hsl(var(--main-hue),100%,46%);--blockCodeBtn-color:hsl(calc(var(--main-hue) - 6),100%,38%);--blockCodeBtnFocus-color:hsl(calc(var(--main-hue) - 16),100%,48%)}*{margin:0;padding:0;box-sizing:border-box}app-root,body,html{margin:0;width:100%;height:100%;overflow:hidden}</style><link rel="stylesheet" href="styles.df70c2a540390fa9bed9.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.df70c2a540390fa9bed9.css"></noscript>
+
+
+
+  <meta charset="utf-8">
+  <!-- 删除ios菜单工具栏 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>M5Flow</title>
+  <base href="/">
+
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- UC强制全屏 --> 
+<meta name="full-screen" content="yes">
+
+<!-- UC应用模式 --> 
+<meta name="browsermode" content="application">
+
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+
+<!-- 兼容Electron的prompt问题 -->
+<script>
+  var ipcRenderer = require('electron').ipcRenderer
+  window.prompt = function(title, val){
+    return ipcRenderer.sendSync('prompt', {title, val})
+  }
+</script>
+
+</head><body style="overflow-x:hidden">
+  <app-root></app-root>
+<script src="runtime-es2015.20e57245914451a868a6.js" type="module"></script><script src="runtime-es5.20e57245914451a868a6.js" nomodule defer></script><script src="polyfills-es5.54a1dfaec0026e925323.js" nomodule defer></script><script src="polyfills-es2015.ccb2b3443cdf60c5f795.js" type="module"></script><script src="scripts.d1c43119351990d95dfc.js" defer></script><script src="main-es2015.3413a3092bdb15f4e5e7.js" type="module"></script><script src="main-es5.3413a3092bdb15f4e5e7.js" nomodule defer></script>
+<script>
+  function doSave(value, type, name) {
+    var blob;
+    if (typeof window.Blob == "function") {
+      blob = new Blob([value], { type: type });
+    } else {
+      var BlobBuilder = window.BlobBuilder || window.MozBlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder;
+      var bb = new BlobBuilder();
+      bb.append(value);
+      blob = bb.getBlob(type);
+    }
+    var URL = window.URL || window.webkitURL;
+    var bloburl = URL.createObjectURL(blob);
+    var anchor = document.createElement("a");
+    if ('download' in anchor) {
+      anchor.style.visibility = "hidden";
+      anchor.href = bloburl;
+      anchor.download = name;
+      document.body.appendChild(anchor);
+      var evt = document.createEvent("MouseEvents");
+      evt.initEvent("click", true, true);
+      anchor.dispatchEvent(evt);
+      document.body.removeChild(anchor);
+    } else if (navigator.msSaveBlob) {
+      navigator.msSaveBlob(blob, name);
+    } else {
+      location.href = bloburl;
+    }
+  }
+</script>
+
+</body></html>

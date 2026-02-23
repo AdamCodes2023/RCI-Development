@@ -1,0 +1,24 @@
+dn: cn=cirruslink
+objectClass: top
+objectClass: ldapSubEntry
+objectClass: subschema
+cn: cirruslink
+attributeTypes: ( 1.3.6.1.4.1.60051.2.1.1
+    NAME 'cls-subTopicFilter'
+    DESC 'An MQTT topic filter to subscribe on.'
+    EQUALITY caseExactMatch
+    ORDERING caseExactOrderingMatch
+    SUBSTR caseExactSubstringsMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributeTypes: ( 1.3.6.1.4.1.60051.2.1.2
+    NAME 'cls-pubTopicFilter'
+    DESC 'An MQTT topic filter to publish on.'
+    EQUALITY caseExactMatch
+    ORDERING caseExactOrderingMatch
+    SUBSTR caseExactSubstringsMatch
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+objectClasses: ( 1.3.6.1.4.1.60051.2.2.1
+    NAME 'cls-mqttCredential'
+    DESC 'Represents an MQTT client with ACLs.'
+    AUXILIARY
+    MAY ( cls-subTopicFilter $ cls-pubTopicFilter ) )
