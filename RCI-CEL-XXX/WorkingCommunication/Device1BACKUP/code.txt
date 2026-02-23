@@ -1,0 +1,423 @@
+import time
+import random
+import microcontroller
+import board
+import adafruit_focaltouch
+import terminalio
+from adafruit_bitmap_font import bitmap_font
+from adafruit_display_text import label
+from adafruit_display_text import scrolling_label
+import displayio
+import busio
+import digitalio
+import adafruit_requests as requests
+from adafruit_wiznet5k.adafruit_wiznet5k import WIZNET5K
+import adafruit_wiznet5k.adafruit_wiznet5k_socket as wsocket
+
+import adafruit_minimqtt.adafruit_minimqtt as MQTT
+
+#import socketpool
+#import wifi
+#import ssl
+import sslSocket2
+
+import sdcardio
+import storage
+
+import adafruit_ads1x15.ads1115 as ads1115
+from adafruit_ads1x15.analog_in import AnalogIn
+import adafruit_mcp4728 as mcp4728
+import adafruit_pcf8574 as pcf8574
+
+
+# Get Adafruit IO details and more from a secrets.py file
+try:
+    import config_secrets as secrets
+except ImportError:
+    print("Adafruit IO secrets are kept in secrets.py, please add them there!")
+    raise
+
+display = board.DISPLAY
+
+# Set text, font, and color
+text = " " * 10
+#" `1234567890-=qwertyuiop[]\asdfghjkl;''zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:""ZXCVBNM<>?"
+#font = terminalio.FONT
+font = bitmap_font.load_font("/font/YSRR75.bdf")
+color = 0x0000FF
+max_characters = 5
+animate_time = 0.1
+
+# Create the text label
+#text_area1 = label.Label(font, text=text, color=color)
+text_area2 = label.Label(font, text=text, color=color)
+text_area3 = label.Label(terminalio.FONT, text=text, color=color)
+text_area1 = scrolling_label.ScrollingLabel(font, max_characters=max_characters, text=text, animate_time=animate_time)
+#text_area2 = scrolling_label.ScrollingLabel(font, max_characters=max_characters, text=text, animate_time=animate_time)
+
+# Set the location
+text_area1.x = 10
+text_area1.y = 80
+
+text_area2.x = 10
+text_area2.y = 150
+
+text_area3.x = 10
+text_area3.y = 10
+
+# Create a Group to hold the TileGrid
+group = displayio.Group()
+
+# Add the TileGrid to the Group
+group.append(text_area1)
+group.append(text_area2)
+group.append(text_area3)
+
+def scroll(text: ScrollingLabel) -> None:
+    while text.current_index < len(text.full_text) - 5:
+        text.update()
+    
+# Show it
+#display.show(group)
+#display.show(text_area2)
+
+#scroll(text_area1)
+#scroll(text_area2)
+#scroll(text_area3)
+
+# Get pins on board
+# text_area1.text = str((dir(board)))
+# scroll(text_area1)
+# time.sleep(0.5)
+# print(str((dir(board))))
+# while True:
+    # pass
+
+#BUS INITIALIZATION
+cs = digitalio.DigitalInOut(board.D26)
+csSD = board.SD_CS
+spi_bus = board.SPI()
+
+INTERNALi2c = board.I2C()
+INTERNALi2c.unlock()
+ft = adafruit_focaltouch.Adafruit_FocalTouch(INTERNALi2c, debug=False)
+
+#SD CARD CONFIG
+sdcard = sdcardio.SDCard(spi_bus, csSD)
+vfs = storage.VfsFat(sdcard)
+storage.mount(vfs, "/sd")
+
+with open("/sd/test.txt", "w") as f:
+    f.write("Hello world!\r\n")
+    
+with open("/sd/test.txt", "r") as f:
+    #text_area1.text = f.readline()
+    print(text_area1.text)
+
+'''
+scroll(text_area1)
+time.sleep(0.5)
+'''
+
+#I2C PROGRAMMING
+
+#print(dir(board))
+# To use default I2C bus (most boards)
+i2c = board.PORTA_I2C()  # uses board.SCL and board.SDA
+#i2c = busio.I2C(board.PORTA_SCL, board.PORTA_SDA, frequency=100000) #FREEZES M5STACK
+
+while not i2c.try_lock():
+    pass
+try:
+    #while True:
+    print("I2C addresses found:", [hex(device_address) for device_address in i2c.scan()])
+    time.sleep(2)
+finally:  # unlock the i2c bus when ctrl-c'ing out of the loop
+    #pass
+    i2c.unlock()
+
+#DONE -> PCF8574 16-Bit I2C I/O Expander with Interrupt
+pcfr = pcf8574.PCF8574(i2c, 0x38)
+pcfw1 = pcf8574.PCF8574(i2c, 0x39)
+pcfw2 = pcf8574.PCF8574(i2c, 0x3a)
+#SET ALL PINS HIGH FOR INPUT
+pcfr.write_gpio(0b11111111)
+#pcfr.write_pin(0, True)
+#pcfr.write_pin(1, True)
+
+print(pcfr.read_pin(0))
+print(pcfr.read_pin(1))
+
+pcfw1.write_gpio(0b00000000)
+#pcfw1.write_pin(0, False)
+#pcfw1.write_pin(1, False)
+
+print(pcfw1.read_pin(0))
+print(pcfw1.read_pin(1))
+
+pcfw2.write_gpio(0b00000000)
+#pcfw2.write_pin(0, False)
+
+print(pcfw2.read_pin(0))
+
+
+#DONE -> ADS1115 16 Bit I2C Analog to Digital Converter
+adc = ads1115.ADS1115(i2c, gain = (1.0), address = 0x48)
+chan = AnalogIn(adc, ads1115.P0)
+chan2 = AnalogIn(adc, ads1115.P1)
+#chan3 = AnalogIn(adc, ads1115.P2)
+#chan4 = AnalogIn(adc, ads1115.P3)
+print(chan.value, chan.voltage)
+print(chan2.value, chan2.voltage)
+#print(chan3.value, chan3.voltage)
+#print(chan4.value, chan4.voltage)
+
+
+#DONE -> MCP4728 12 Bit I2C Digital to Analog Converter
+dac = mcp4728.MCP4728(i2c, address = 0x60)
+
+'''
+dac.channel_a.vref = mcp4728.Vref.VDD
+dac.channel_b.vref = mcp4728.Vref.VDD
+dac.channel_c.vref = mcp4728.Vref.VDD
+dac.channel_d.vref = mcp4728.Vref.VDD
+'''
+
+dac.channel_a.vref = mcp4728.Vref.INTERNAL
+dac.channel_b.vref = mcp4728.Vref.INTERNAL
+dac.channel_c.vref = mcp4728.Vref.INTERNAL
+dac.channel_d.vref = mcp4728.Vref.INTERNAL
+
+dac.channel_a.gain = 2
+dac.channel_b.gain = 2
+dac.channel_c.gain = 2
+dac.channel_d.gain = 2
+
+dac.channel_a.value = 0
+dac.channel_b.value = 0 
+dac.channel_c.value = 0
+dac.channel_d.value = 0
+
+'''
+while True:
+    chan = AnalogIn(adc, ads1115.P0)
+    text_area1.text = "1: "
+    if chan.value < 0:
+        text_area1.text += "0"
+        dac.channel_a.value = 0
+    else:
+        text_area1.text += str(chan.value)
+        dac.channel_a.value = chan.value * 2
+    #scroll(text_area1)
+    time.sleep(2.0)
+    chan2 = AnalogIn(adc, ads1115.P1)
+    text_area1.text = "2: "
+    if chan2.value < 0:
+        text_area1.text += "0"
+        dac.channel_b.value = 0
+    else:
+        text_area1.text += str(chan2.value)
+        dac.channel_b.value = chan2.value * 2
+    #scroll(text_area1)
+    time.sleep(2.0)
+'''
+
+# AD5696R Digital to Analog Converter
+
+
+# Setup your network configuration below
+#IP_ADDRESS = (192, 168, 12, 102)
+IP_ADDRESS = (192, 168, 2, 180)
+SUBNET_MASK = (255, 255, 255, 0)
+#GATEWAY_ADDRESS = (192, 168, 12, 1)
+GATEWAY_ADDRESS = (192, 168, 2, 1)
+#DNS_SERVER = (0, 0, 0, 0)
+DNS_SERVER = (8, 8, 8, 8)
+
+# Initialize ethernet interface with DHCP
+eth = WIZNET5K(spi_bus, cs, is_dhcp = True, mac = "8C:1F:64:81:30:00", debug = True)
+
+'''
+# Initialize ethernet interface without DHCP
+eth = WIZNET5K(spi_bus, cs, is_dhcp = False, debug = False)
+
+# Set network configuration
+eth.ifconfig = (IP_ADDRESS, SUBNET_MASK, GATEWAY_ADDRESS, DNS_SERVER)
+'''
+
+### Feeds ###
+
+di1_feed = "/feeds/di1"
+
+di2_feed = "/feeds/di2"
+
+do1_feed = "/feeds/do1"
+
+do2_feed = "/feeds/do2"
+
+ai1_feed = "/feeds/ai1"
+
+ai2_feed = "/feeds/ai2"
+
+ao1_feed = "/feeds/ao1"
+
+ao2_feed = "/feeds/ao2"
+
+#INITIAL VARIABLES
+di1_value = "-1"
+di2_value = "-2"
+ai1_value = "-3"
+ai2_value = "-4"
+
+### Code ###
+
+
+# Define callback methods which are called when events occur
+# pylint: disable=unused-argument, redefined-outer-name
+def connected(client, userdata, flags, rc):
+    # This function will be called when the client is connected
+    # successfully to the broker.
+    text_area1.text = ("Connected to HIVEMQ!")
+    scroll(text_area1)
+    time.sleep(0.5)
+    client.subscribe(di1_feed, qos = 1)
+    client.subscribe(di2_feed, qos = 1)
+    client.subscribe(ai1_feed, qos = 1)
+    client.subscribe(ai2_feed, qos = 1)
+
+
+def disconnected(client, userdata, rc):
+    # This method is called when the client is disconnected
+    text_area1.text = ("Disconnected from HIVEMQ!")
+    scroll(text_area1)
+    time.sleep(0.5)
+
+
+def message(client, topic, message):
+    # This method is called when a topic the client is subscribed to
+    # has a new message.
+    text_area3.text = ("New message on topic {0}: {1}".format(topic, message))
+    #scroll(text_area3)
+    #time.sleep(0.5)
+    if topic[len(topic)-3:] == "di1":
+        pcfw1.write_pin(0, bool(int(message)))
+        global di1_value
+        di1_value = (int(message))
+    if topic[len(topic)-3:] == "di2":
+        pcfw1.write_pin(1, bool(int(message)))
+        global di2_value
+        di2_value = (int(message))
+    if topic[len(topic)-3:] == "ai1":
+        if (int(message)) < 0:
+            dac.channel_a.value = 0
+            global ai1_value
+            ai1_value = 0
+        else:
+            dac.channel_a.value = (int(message)) * 2
+            global ai1_value
+            ai1_value = (int(message))
+    if topic[len(topic)-3:] == "ai2":
+        if (int(message)) < 0:
+            dac.channel_b.value = 0
+            global ai2_value
+            ai2_value = 0
+        else:
+            dac.channel_b.value = (int(message)) * 2
+            global ai2_value
+            ai2_value = (int(message))
+
+'''
+# Initialize MQTT interface with the ethernet interface
+#s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sPool = socketpool.SocketPool(wifi.radio)
+s = sPool.socket()
+# require a certificate from the server
+sslWrapper = ssl.create_default_context()
+#sslWrapper.load_cert_chain("C:/Users/Pribusin_HP_Laptop/Documents/M5Stack/EthernetCommunicationCOM6/isrgrootx1.pem", keyfile: str) 
+ssl_sock = sslWrapper.wrap_socket(s)
+# MQTT.set_socket(wsocket, eth)
+MQTT.set_socket(ssl_sock, eth)
+'''
+
+'''
+sslWrapper = ssl.create_default_context()
+wsocket.set_interface(eth)
+fakeSSLContext = MQTT._FakeSSLContext(eth)
+wsslsocket = fakeSSLContext.wrap_socket(wsocket, eth)
+MQTT.set_socket(wsslsocket, eth)
+'''
+
+sslWrapper = sslSocket.create_default_context()
+wsocket.set_interface(eth)
+realSock = wsocket.socket()
+#wsslsocket = sslWrapper.wrap_socket(realSock)
+#MQTT.set_socket(wsslsocket, eth)
+
+# Set up a MiniMQTT Client
+mqtt_client = MQTT.MQTT(
+    broker="06e8c7b775f1454b8b94fcd788277596.s2.eu.hivemq.cloud",
+    username="ADAMMQTT2",
+    password="Tennis19",
+    is_ssl=True,
+    socket_pool=realSock,
+    ssl_context=sslWrapper,
+)
+
+# Setup the callback methods above
+mqtt_client.on_connect = connected
+mqtt_client.on_disconnect = disconnected
+mqtt_client.on_message = message
+
+# Connect the client to the MQTT broker.
+text_area1.text = ("Connecting to HIVEMQ...")
+scroll(text_area1)
+time.sleep(0.5)
+mqtt_client.connect()
+text_area1.text = ("Done!")
+scroll(text_area1)
+time.sleep(0.5)
+
+while True:
+    # Poll the message queue
+    try:
+        mqtt_client.loop()
+    except MQTT.MMQTTException:
+        mqtt_client.reconnect()
+        
+    '''
+    # Send a new message
+    text_area1.text = ("Sending input values...")
+    scroll(text_area1)
+    time.sleep(0.5)
+    '''
+    
+    mqtt_client.publish(do1_feed, str(pcfr.read_pin(0)), qos = 1)
+    time.sleep(0.5)
+    mqtt_client.publish(do2_feed, str(pcfr.read_pin(1)), qos = 1)
+    time.sleep(0.5)
+    mqtt_client.publish(ao1_feed, str(chan.value), qos = 1)
+    time.sleep(0.5)
+    mqtt_client.publish(ao2_feed, str(chan2.value), qos = 1)
+    time.sleep(0.5)
+
+    '''
+    text_area1.text = ("Sent!")
+    scroll(text_area1)
+    time.sleep(0.5)
+    '''
+    
+    if ft.touched:
+        text_area2.text = "d1:" + str(di1_value)
+        #scroll(text_area2)
+        time.sleep(1.0)
+        text_area2.text = "d2:" + str(di2_value)
+        #scroll(text_area2)
+        time.sleep(1.0)
+        text_area2.text = "a1:" + str(ai1_value)
+        #scroll(text_area2)
+        time.sleep(1.0)
+        text_area2.text = "a2:" + str(ai2_value)
+        #scroll(text_area2)
+        time.sleep(1.0)
+        text_area2.text = "     "
+    
