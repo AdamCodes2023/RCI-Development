@@ -1,0 +1,5 @@
+1. Command Line Prompt:
+
+ffmpeg -y -i input.mp3 -acodec pcm_s16le -f s16le -ac 1 -ar 16000 output.pcm
+
+2. Use the Python Executable.
