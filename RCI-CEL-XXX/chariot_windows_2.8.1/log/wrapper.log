@@ -5260,3 +5260,253 @@ INFO|5904/0||26-06-15 09:42:53|[WARN] Jetty not started (HTTP and HTTPS disabled
 INFO|5904/0||26-06-15 09:42:54|[INFO] Started Jetty 9.4.57.v20241219 at port(s) HTTP:8080 on context path / [minThreads=8,maxThreads=200,acceptors=1,selectors=4]
 INFO|5904/0||26-06-15 09:42:54|09:42:54.806 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Binding Persistence Service [default]
 INFO|5904/0||26-06-15 09:42:54|09:42:54.821 [FelixStartLevel] INFO  c.c.c.license.impl.LicenseService - Chariot Deployment: Traditional
+INFO|5904/0||26-07-01 11:06:13|11:06:13.271 [qtp1927635997-142] INFO  c.c.c.security.impl.SecurityService - User admin login failed: Invalid user credentials
+INFO|5904/0||26-07-01 11:06:18|11:06:18.524 [qtp1927635997-51] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Enabling session validation scheduler...
+INFO|5904/0||26-07-01 11:06:18|11:06:18.619 [qtp1927635997-51] INFO  c.c.c.security.impl.SecurityService - User admin has logged in
+INFO|5904/0||26-07-01 11:09:12|11:09:12.727 [qtp1927635997-56] INFO  c.c.c.client.impl.ManagedClient - Using TLS: for connection [CHARIOT:AWS]
+INFO|5904/0||26-07-01 11:09:12|11:09:12.729 [qtp1927635997-56] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Connecting MQTT Client
+INFO|5904/0||26-07-01 11:09:13|11:09:13.305 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: Connection reset
+INFO|5904/0||26-07-01 11:09:13|11:09:13.314 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: Connection reset by peer
+INFO|5904/0||26-07-01 11:09:13|11:09:13.307 [qtp1927635997-56] ERROR c.c.c.server.client.MqttClientImpl - [CHARIOT] Error establishing socket connection to server at a1917s4uqycwx-ats.iot.us-east-1.amazonaws.com:8883, java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:13|java.util.concurrent.ExecutionException: java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:13|	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:396)
+INFO|5904/0||26-07-01 11:09:13|	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.client.MqttClientImpl.connectAsync(MqttClientImpl.java:266)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.client.impl.ManagedClient.connect(ManagedClient.java:96)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.client.impl.Client.connectAction(Client.java:588)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.client.impl.Client.action(Client.java:441)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.http.servlet.ChariotServlet.doPost(ChariotServlet.java:156)
+INFO|5904/0||26-07-01 11:09:13|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.http.servlet.ChariotServlet.service(ChariotServlet.java:124)
+INFO|5904/0||26-07-01 11:09:13|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.handler.ServletHandler.handle(ServletHandler.java:127)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.dispatch.InvocationChain.doFilter(InvocationChain.java:86)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.dispatch.Dispatcher$1.doFilter(Dispatcher.java:152)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:992)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.sslfilter.internal.SslFilter.doFilter(SslFilter.java:97)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.handler.PreprocessorHandler.handle(PreprocessorHandler.java:137)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:998)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager.invokePreprocessors(WhiteboardManager.java:1002)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.dispatch.Dispatcher.dispatch(Dispatcher.java:94)
+INFO|5904/0||26-07-01 11:09:13|	at org.apache.felix.http.base.internal.dispatch.DispatcherServlet.service(DispatcherServlet.java:49)
+INFO|5904/0||26-07-01 11:09:13|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:554)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:505)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:191)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+INFO|5904/0||26-07-01 11:09:13|	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+INFO|5904/0||26-07-01 11:09:13|	at java.base/java.lang.Thread.run(Thread.java:840)
+INFO|5904/0||26-07-01 11:09:13|Caused by: java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:13|	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+INFO|5904/0||26-07-01 11:09:13|	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.core.SSLEngineHandler.unwrap(SSLEngineHandler.java:239)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleHandshake(SSLEngineHandler.java:182)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleInitialHandshake(SSLEngineHandler.java:125)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.client.SecureClientConnection.handleConnect(SecureClientConnection.java:129)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.client.AbstractClientConnection.handleConnectOp(AbstractClientConnection.java:234)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.client.ClientSelectorWorker.handleKey(ClientSelectorWorker.java:48)
+INFO|5904/0||26-07-01 11:09:13|	at com.cirruslink.chariot.server.core.io.AbstractSelectorWorker.run(AbstractSelectorWorker.java:144)
+INFO|5904/0||26-07-01 11:09:13|	... 1 common frames omitted
+INFO|5904/0||26-07-01 11:09:13|11:09:13.318 [qtp1927635997-56] WARN  c.c.c.server.core.SSLEngineHandler - Error closing SSLEngine Connection reset
+INFO|5904/0||26-07-01 11:09:13|11:09:13.320 [qtp1927635997-56] WARN  c.c.c.client.impl.ManagedClient - Mqtt Connect Error: java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:13|11:09:13.320 [qtp1927635997-56] ERROR c.c.c.http.servlet.ChariotServlet - POST on /client unsuccessful
+INFO|5904/0||26-07-01 11:09:20|11:09:20.355 [qtp1927635997-52] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Connecting MQTT Client
+INFO|5904/0||26-07-01 11:09:20|11:09:20.514 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: Connection reset
+INFO|5904/0||26-07-01 11:09:20|11:09:20.514 [qtp1927635997-52] ERROR c.c.c.server.client.MqttClientImpl - [CHARIOT] Error establishing socket connection to server at a1917s4uqycwx-ats.iot.us-east-1.amazonaws.com:8883, java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:20|java.util.concurrent.ExecutionException: java.net.SocketException: Connection reset
+INFO|5904/0||26-07-01 11:09:20|	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:396)
+INFO|5904/0||26-07-01 11:09:20|	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.client.MqttClientImpl.connectAsync(MqttClientImpl.java:266)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.client.impl.ManagedClient.connect(ManagedClient.java:96)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.client.impl.Client.connectAction(Client.java:588)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.client.impl.Client.action(Client.java:441)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.http.servlet.ChariotServlet.doPost(ChariotServlet.java:156)
+INFO|5904/0||26-07-01 11:09:20|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+INFO|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.http.servlet.ChariotServlet.service(ChariotServlet.java:124)
+INFO|5904/0||26-07-01 11:09:20|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.handler.ServletHandler.handle(ServletHandler.java:127)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.dispatch.InvocationChain.doFilter(InvocationChain.java:86)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.dispatch.Dispatcher$1.doFilter(Dispatcher.java:152)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:992)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.sslfilter.internal.SslFilter.doFilter(SslFilter.java:97)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.handler.PreprocessorHandler.handle(PreprocessorHandler.java:137)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:998)
+INFO|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager.invokePreprocessors(WhiteboardManager.java:1002)
+FINEST|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.dispatch.Dispatcher.dispatch(Dispatcher.java:94)
+FINEST|5904/0||26-07-01 11:09:20|	at org.apache.felix.http.base.internal.dispatch.DispatcherServlet.service(DispatcherServlet.java:49)
+FINEST|5904/0||26-07-01 11:09:20|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:554)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:505)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:191)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+FINEST|5904/0||26-07-01 11:09:20|	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+FINEST|5904/0||26-07-01 11:09:20|	at java.base/java.lang.Thread.run(Thread.java:840)
+FINEST|5904/0||26-07-01 11:09:20|Caused by: java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:09:20|	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+FINEST|5904/0||26-07-01 11:09:20|	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.core.SSLEngineHandler.unwrap(SSLEngineHandler.java:239)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleHandshake(SSLEngineHandler.java:182)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleInitialHandshake(SSLEngineHandler.java:125)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.client.SecureClientConnection.handleConnect(SecureClientConnection.java:129)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.client.AbstractClientConnection.handleConnectOp(AbstractClientConnection.java:234)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.client.ClientSelectorWorker.handleKey(ClientSelectorWorker.java:48)
+FINEST|5904/0||26-07-01 11:09:20|	at com.cirruslink.chariot.server.core.io.AbstractSelectorWorker.run(AbstractSelectorWorker.java:144)
+FINEST|5904/0||26-07-01 11:09:20|	... 1 common frames omitted
+FINEST|5904/0||26-07-01 11:09:20|11:09:20.516 [qtp1927635997-52] WARN  c.c.c.server.core.SSLEngineHandler - Error closing SSLEngine Connection reset
+FINEST|5904/0||26-07-01 11:09:20|11:09:20.516 [qtp1927635997-52] WARN  c.c.c.client.impl.ManagedClient - Mqtt Connect Error: java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:09:20|11:09:20.517 [qtp1927635997-52] ERROR c.c.c.http.servlet.ChariotServlet - POST on /client unsuccessful
+FINEST|5904/0||26-07-01 11:09:20|11:09:20.519 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: null
+FINEST|5904/0||26-07-01 11:12:39|11:12:39.348 [qtp1927635997-52] INFO  c.c.c.system.impl.SystemService - Updating Felix HTTP Jetty config to start/stop service
+FINEST|5904/0||26-07-01 11:12:39|11:12:39.360 [qtp1927635997-52] INFO  c.c.c.system.impl.SystemService - Notifying System Event Handler server of SSL setup event
+FINEST|5904/0||26-07-01 11:12:39|11:12:39.908 [CM Configuration Updater (Update: pid=org.apache.felix.http)] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+FINEST|5904/0||26-07-01 11:12:40|[INFO] Stopped Jetty.
+FINEST|5904/0||26-07-01 11:12:40|[INFO] Started Jetty 9.4.57.v20241219 at port(s) HTTP:8080 on context path / [minThreads=8,maxThreads=200,acceptors=1,selectors=4]
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.152 [qtp2129059659-164] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Connecting MQTT Client
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.334 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: Connection reset
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.334 [qtp2129059659-164] ERROR c.c.c.server.client.MqttClientImpl - [CHARIOT] Error establishing socket connection to server at a1917s4uqycwx-ats.iot.us-east-1.amazonaws.com:8883, java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:13:19|java.util.concurrent.ExecutionException: java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:13:19|	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:396)
+FINEST|5904/0||26-07-01 11:13:19|	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.client.MqttClientImpl.connectAsync(MqttClientImpl.java:266)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.client.impl.ManagedClient.connect(ManagedClient.java:96)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.client.impl.Client.connectAction(Client.java:588)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.client.impl.Client.action(Client.java:441)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.http.servlet.ChariotServlet.doPost(ChariotServlet.java:156)
+FINEST|5904/0||26-07-01 11:13:19|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.http.servlet.ChariotServlet.service(ChariotServlet.java:124)
+FINEST|5904/0||26-07-01 11:13:19|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.handler.ServletHandler.handle(ServletHandler.java:127)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.dispatch.InvocationChain.doFilter(InvocationChain.java:86)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.dispatch.Dispatcher$1.doFilter(Dispatcher.java:152)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:992)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.sslfilter.internal.SslFilter.doFilter(SslFilter.java:97)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.handler.PreprocessorHandler.handle(PreprocessorHandler.java:137)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager$2.doFilter(WhiteboardManager.java:998)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.whiteboard.WhiteboardManager.invokePreprocessors(WhiteboardManager.java:1002)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.dispatch.Dispatcher.dispatch(Dispatcher.java:94)
+FINEST|5904/0||26-07-01 11:13:19|	at org.apache.felix.http.base.internal.dispatch.DispatcherServlet.service(DispatcherServlet.java:49)
+FINEST|5904/0||26-07-01 11:13:19|	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:554)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:505)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:191)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+FINEST|5904/0||26-07-01 11:13:19|	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+FINEST|5904/0||26-07-01 11:13:19|	at java.base/java.lang.Thread.run(Thread.java:840)
+FINEST|5904/0||26-07-01 11:13:19|Caused by: java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:13:19|	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394)
+FINEST|5904/0||26-07-01 11:13:19|	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.core.SSLEngineHandler.unwrap(SSLEngineHandler.java:239)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleHandshake(SSLEngineHandler.java:182)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.core.SSLEngineHandler.handleInitialHandshake(SSLEngineHandler.java:125)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.client.SecureClientConnection.handleConnect(SecureClientConnection.java:129)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.client.AbstractClientConnection.handleConnectOp(AbstractClientConnection.java:234)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.client.ClientSelectorWorker.handleKey(ClientSelectorWorker.java:48)
+FINEST|5904/0||26-07-01 11:13:19|	at com.cirruslink.chariot.server.core.io.AbstractSelectorWorker.run(AbstractSelectorWorker.java:144)
+FINEST|5904/0||26-07-01 11:13:19|	... 1 common frames omitted
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.335 [qtp2129059659-164] WARN  c.c.c.server.core.SSLEngineHandler - Error closing SSLEngine Connection reset
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.336 [qtp2129059659-164] WARN  c.c.c.client.impl.ManagedClient - Mqtt Connect Error: java.net.SocketException: Connection reset
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.336 [qtp2129059659-164] ERROR c.c.c.http.servlet.ChariotServlet - POST on /client unsuccessful
+FINEST|5904/0||26-07-01 11:13:19|11:13:19.337 [Client-Selector] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect failed: null
+FINEST|5904/0||26-07-01 11:13:41|11:13:41.969 [qtp2129059659-205] INFO  c.c.c.client.impl.ManagedClient - Using TLS: for connection [CHARIOT:AWS]
+FINEST|5904/0||26-07-01 11:13:41|11:13:41.969 [qtp2129059659-205] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Connecting MQTT Client
+FINEST|5904/0||26-07-01 11:13:42|11:13:42.334 [SECURE-ClientReadWorker] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connect complete (reconnect)
+FINEST|5904/0||26-07-01 12:06:18|12:06:18.549 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-01 12:06:18|12:06:18.559 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-01 12:25:45|12:25:45.739 [Client-Selector] ERROR c.c.c.s.client.ClientSelectorWorker - [SECURE] Error handling read from socket channel: An established connection was aborted by the software in your host machine
+FINEST|5904/0||26-07-01 12:25:45|12:25:45.734 [SECURE-ClientWriteWorker] ERROR c.c.c.server.core.io.WriteWorker - [SECURE] Error handling write (PINGREQ) to socket channel [877bae76-c4cc-49e1-b25d-b6aef0d870a3, a1917s4uqycwx-ats.iot.us-east-1.amazonaws.com/54.204.16.139]
+FINEST|5904/0||26-07-01 12:25:45|java.io.IOException: An established connection was aborted by the software in your host machine
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:54)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:132)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:97)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:53)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:532)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.core.SSLEngineHandler.writeData(SSLEngineHandler.java:358)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.util.ConnectionUtils.secureWrite(ConnectionUtils.java:149)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.client.SecureClientConnection.write(SecureClientConnection.java:160)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.client.AbstractClientConnection.handleWrite(AbstractClientConnection.java:380)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.core.io.WriteWorker.handleJob(WriteWorker.java:101)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.core.io.WriteWorker.handleJob(WriteWorker.java:27)
+FINEST|5904/0||26-07-01 12:25:45|	at com.cirruslink.chariot.server.core.io.PacketJobWorker.run(PacketJobWorker.java:60)
+FINEST|5904/0||26-07-01 12:25:45|	at java.base/java.lang.Thread.run(Thread.java:840)
+FINEST|5904/0||26-07-01 12:25:45|12:25:45.822 [Client-Selector] WARN  c.c.c.server.core.SSLEngineHandler - Error closing SSLEngine An established connection was aborted by the software in your host machine
+FINEST|5904/0||26-07-01 12:25:45|12:25:45.825 [SECURE-ClientReadWorker] WARN  c.c.c.server.core.SSLEngineHandler - Not closing SSL channel, already closed
+FINEST|5904/0||26-07-01 12:25:45|12:25:45.829 [SECURE-ClientReadWorker] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Connection lost: CONNECTION_LOST
+FINEST|5904/0||26-07-01 13:09:10|13:09:10.723 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-01 13:09:10|13:09:10.769 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  [1] sessions were stopped.
+FINEST|5904/0||26-07-01 14:06:18|14:06:18.527 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-01 14:06:18|14:06:18.537 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-01 15:06:18|15:06:18.528 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-01 15:06:18|15:06:18.535 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
