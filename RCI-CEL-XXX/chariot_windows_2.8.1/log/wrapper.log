@@ -6158,3 +6158,335 @@ FINEST|5904/0||26-07-14 14:05:54|14:05:54.693 [SessionValidationThread-1] INFO  
 FINEST|5904/0||26-07-14 14:05:54|14:05:54.701 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
 FINEST|5904/0||26-07-14 15:05:54|15:05:54.692 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
 FINEST|5904/0||26-07-14 15:05:54|15:05:54.702 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-14 16:35:36|16:35:36.510 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-14 16:35:36|16:35:36.521 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-14 17:05:54|17:05:54.693 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-14 17:05:54|17:05:54.693 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.152 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.197 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.199 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.200 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.201 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.201 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.204 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.204 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.204 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 10:16:27|10:16:27.206 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+FINEST|5904/0||26-07-15 11:05:51|11:05:51.527 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Validating all active sessions...
+FINEST|5904/0||26-07-15 11:05:51|11:05:51.564 [SessionValidationThread-1] INFO  o.a.s.s.m.AbstractValidatingSessionManager - Finished session validation.  No sessions were stopped.
+INFO|wrapper||26-07-15 11:49:16|Win service stop - timeout: 30000
+INFO|wrapper||26-07-15 11:49:16|Win service wrapper.control -> stopping application
+INFO|wrapper||26-07-15 11:49:16|stopping process with pid/timeout 5904 30000
+FINEST|5904/0||26-07-15 11:49:18|wrapper manager received Message:STOP::COMPUTER
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.280 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 132
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.289 [FelixStartLevel] INFO  c.c.c.api.model.SystemStatsTracker - Stopping the SystemStatsTracker Thread 95
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.909 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Disconnecting from all servers
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.922 [ForkJoinPool.commonPool-worker-2] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Disconnecting
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.922 [ForkJoinPool.commonPool-worker-1] INFO  c.c.c.server.client.MqttClientImpl - [Chariot] Disconnecting
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.922 [ForkJoinPool.commonPool-worker-2] INFO  c.c.c.server.client.MqttClientImpl - [CHARIOT] Not disconnecting (not connected)
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.922 [ForkJoinPool.commonPool-worker-1] INFO  c.c.c.server.client.MqttClientImpl - [Chariot] Not disconnecting (not connected)
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.923 [ForkJoinPool.commonPool-worker-2] INFO  c.c.chariot.client.impl.Client - [CHARIOT, AWS] Disconnect complete
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.923 [ForkJoinPool.commonPool-worker-1] INFO  c.c.chariot.client.impl.Client - [Chariot, Flespi] Disconnect complete
+FINEST|5904/0||26-07-15 11:49:18|11:49:18.925 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Binding Persistence Service [default]
+FINEST|5904/0||26-07-15 11:49:19|11:49:19.434 [FelixStartLevel] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+FINEST|5904/0||26-07-15 11:49:19|11:49:19.437 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 311
+FINEST|5904/0||26-07-15 11:49:19|11:49:19.454 [FelixStartLevel] INFO  c.c.c.license.impl.LicenseService - Chariot Deployment: Traditional
+FINEST|5904/0||26-07-15 11:49:20|11:49:19.979 [FelixStartLevel] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+FINEST|5904/0||26-07-15 11:49:20|11:49:19.984 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 369
+FINEST|5904/0||26-07-15 11:49:20|11:49:20.035 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 372
+FINEST|5904/0||26-07-15 11:49:20|11:49:20.559 [FelixStartLevel] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+FINEST|5904/0||26-07-15 11:49:20|11:49:20.579 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 417
+FINEST|5904/0||26-07-15 11:49:21|11:49:21.140 [FelixStartLevel] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+FINEST|5904/0||26-07-15 11:49:21|11:49:21.141 [LogEntryScheduler-c9c50629] ERROR c.c.c.p.h2.impl.H2PersistenceService - Failed to batch insert into logs table
+FINEST|5904/0||26-07-15 11:49:21|org.h2.jdbc.JdbcSQLNonTransientConnectionException: Connection is broken: "session closed" [90067-224]
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.message.DbException.get(DbException.java:223)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.message.DbException.get(DbException.java:199)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.engine.SessionRemote.checkClosed(SessionRemote.java:553)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:478)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:249)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.jdbc.JdbcConnection.rollbackInternal(JdbcConnection.java:1441)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.jdbc.JdbcConnection.rollback(JdbcConnection.java:516)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.jdbcx.JdbcXAConnection.getConnection(JdbcXAConnection.java:102)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.jdbcx.JdbcConnectionPool.getConnectionNow(JdbcConnectionPool.java:235)
+FINEST|5904/0||26-07-15 11:49:21|	at org.h2.jdbcx.JdbcConnectionPool.getConnection(JdbcConnectionPool.java:198)
+FINEST|5904/0||26-07-15 11:49:21|	at com.cirruslink.chariot.persistence.h2.impl.H2PersistenceService.batchInsertIntoTable(H2PersistenceService.java:845)
+FINEST|5904/0||26-07-15 11:49:21|	at com.cirruslink.chariot.persistence.h2.impl.H2PersistenceService.create(H2PersistenceService.java:272)
+FINEST|5904/0||26-07-15 11:49:21|	at com.cirruslink.chariot.logging.impl.LoggingService.persistLogEntries(LoggingService.java:286)
+FINEST|5904/0||26-07-15 11:49:21|	at com.cirruslink.chariot.logging.impl.LoggingService$PendingLogEntryTask.run(LoggingService.java:641)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+FINEST|5904/0||26-07-15 11:49:21|	at java.base/java.lang.Thread.run(Thread.java:840)
+FINEST|5904/0||26-07-15 11:49:21|11:49:21.152 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 454
+FINEST|5904/0||26-07-15 11:49:21|11:49:21.153 [FelixStartLevel] INFO  c.c.c.api.model.SystemStatsTracker - Stopping the SystemStatsTracker Thread 276
+FINEST|5904/0||26-07-15 11:49:21|11:49:21.154 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Disconnecting from all servers
+FINEST|5904/0||26-07-15 11:49:21|[INFO] Stopped Jetty.
+INFO|wrapper||26-07-15 11:49:22|process exit code: 0
+INFO|wrapper||26-07-15 11:49:22|Win service stop - after shutdown
+INFO|wrapper||26-07-15 11:49:22|Win service stop - before notify
+INFO|wrapper||26-07-15 11:49:22|Win service terminated
+WARNING|wrapper||26-07-15 11:50:10|YAJSW: yajsw-stable-13.11
+WARNING|wrapper||26-07-15 11:50:10|OS   : Windows 11/10.0/amd64
+WARNING|wrapper||26-07-15 11:50:10|JVM  : Amazon.com Inc./17.0.15/C:\Users\Pribusin\Documents\Pribusin Software\RCI-XXX M5Stack\RCI-Development\RCI-CEL-XXX\chariot_windows_2.8.1\lib\runtime\jdk17.0.15_6/64
+INFO|wrapper||26-07-15 11:50:10|start delay: 0
+INFO|wrapper||26-07-15 11:50:13|Warning: WaitForInputIdle returned 258
+INFO|wrapper||26-07-15 11:50:13|started process with pid 1900
+INFO|1900/0||26-07-15 11:50:13|java.io.IOException: The handle is invalid
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.io.FileInputStream.readBytes(Native Method)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:263)
+INFO|1900/0||26-07-15 11:50:13|	at org.rzo.yajsw.io.TeeInputStream$Source.run(TeeInputStream.java:234)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+INFO|1900/0||26-07-15 11:50:13|	at java.base/java.lang.Thread.run(Thread.java:840)
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm:9.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.tree.analysis:9.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.commons:9.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.tree:9.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.util:9.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcpkix:1.78.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcprov:1.78.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcutil:1.78.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.admin:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.alert:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.api:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.aws:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.azure:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.backup:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.client:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.common:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.config:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.http:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.launcher:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.license:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.logging:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.mqtt:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.persistence-h2:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.security:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.server:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.sparkplug:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.system:2.8.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: License4J:4.7.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.aws:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.azure:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.mqtt:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.sparkplug:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.thread:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.utils:1.0.40
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-beanutils:1.10.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.collections:3.2.2
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-configuration2:2.9.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-fileupload:1.4.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-io:2.18.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.lang3:3.5.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.logging:1.2.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.text:1.11.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.guava.failureaccess:1.0.2
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.gson:2.8.9
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.guava:32.1.3.jre
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.httpcomponents.httpclient:4.5.13
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.httpcomponents.httpcore:4.4.13
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-annotations:2.13.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-core:2.13.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-databind:2.13.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.dataformat.jackson-dataformat-properties:2.13.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.fusesource.jansi:1.17.1
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: Java-WebSocket:1.6.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: javax.annotation-api:1.3.2
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-api:0.11.5
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-impl:0.11.5
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-jackson:0.11.5
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.jline:3.2.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: ch.qos.logback.classic:1.3.14
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: ch.qos.logback.core:1.3.14
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.aries.spifly.dynamic.bundle:1.3.7
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.bundlerepository:2.0.10
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.configadmin:1.9.16
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.eventadmin:1.5.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.fileinstall:3.6.4
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.api:3.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.bridge:4.2.18
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.jetty:4.2.30
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.servlet-api:1.2.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.sslfilter:1.2.8
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.scr:2.1.16
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.shell:1.4.3
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.shell.remote:1.1.2
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: osgi.core:6.0.0.201403061837
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.service.log:1.4.0.201802012107
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.function:1.1.0.201802012106
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.promise:1.1.1.201810101357
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.pushstream:1.0.0.201802012107
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.protobuf:3.25.5
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.cache:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.config.core:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.config.ogdl:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.core:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.cipher:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.core:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.hash:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.event:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.lang:2.0.0
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.slf4j.api:2.0.6
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.eclipse.tahu.core:1.0.16
+INFO|1900/0||26-07-15 11:50:13|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.eclipse.tahu.host:1.0.16
+INFO|1900/0||26-07-15 11:50:13|[INFO] Started bridged http services
+INFO|1900/0||26-07-15 11:50:13|[WARN] Jetty not started (HTTP and HTTPS disabled)
+INFO|1900/0||26-07-15 11:50:14|[INFO] Started Jetty 9.4.57.v20241219 at port(s) HTTP:8080 on context path / [minThreads=8,maxThreads=200,acceptors=1,selectors=4]
+INFO|1900/0||26-07-15 11:50:15|11:50:15.223 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Binding Persistence Service [default]
+INFO|1900/0||26-07-15 11:50:15|11:50:15.278 [FelixStartLevel] INFO  c.c.c.license.impl.LicenseService - Chariot Deployment: Traditional
+INFO|wrapper||26-07-15 11:50:57|Win service stop - timeout: 30000
+INFO|wrapper||26-07-15 11:50:57|Win service wrapper.control -> stopping application
+INFO|wrapper||26-07-15 11:50:57|stopping process with pid/timeout 1900 30000
+INFO|1900/0||26-07-15 11:50:57|wrapper manager received Message:STOP::COMPUTER
+INFO|1900/0||26-07-15 11:50:57|11:50:57.861 [FelixStartLevel] INFO  c.c.c.server.impl.ServerStatsTracker - Stopping the ServerStatsTracker Thread 99
+INFO|1900/0||26-07-15 11:50:58|11:50:58.393 [FelixStartLevel] WARN  c.cirruslink.common.util.ThreadUtils - Failed to shutdown executor within specified time
+INFO|1900/0||26-07-15 11:50:58|11:50:58.394 [FelixStartLevel] INFO  c.c.c.api.model.SystemStatsTracker - Stopping the SystemStatsTracker Thread 98
+INFO|1900/0||26-07-15 11:50:58|11:50:58.394 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Disconnecting from all servers
+INFO|1900/0||26-07-15 11:50:58|11:50:58.394 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Binding Persistence Service [default]
+INFO|1900/0||26-07-15 11:50:58|11:50:58.634 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Disconnecting from all servers
+INFO|1900/0||26-07-15 11:50:58|[INFO] Stopped Jetty.
+INFO|wrapper||26-07-15 11:50:59|process exit code: 0
+INFO|wrapper||26-07-15 11:50:59|Win service stop - after shutdown
+INFO|wrapper||26-07-15 11:50:59|Win service stop - before notify
+INFO|wrapper||26-07-15 11:50:59|Win service terminated
+WARNING|wrapper||26-07-15 11:51:29|YAJSW: yajsw-stable-13.11
+WARNING|wrapper||26-07-15 11:51:29|OS   : Windows 11/10.0/amd64
+WARNING|wrapper||26-07-15 11:51:29|JVM  : Amazon.com Inc./17.0.15/C:\Users\Pribusin\Documents\Pribusin Software\RCI-XXX M5Stack\RCI-Development\RCI-CEL-XXX\chariot_windows_2.8.1\lib\runtime\jdk17.0.15_6/64
+INFO|wrapper||26-07-15 11:51:30|start delay: 0
+INFO|wrapper||26-07-15 11:51:32|Warning: WaitForInputIdle returned 258
+INFO|wrapper||26-07-15 11:51:32|started process with pid 5600
+INFO|5600/0||26-07-15 11:51:32|java.io.IOException: The handle is invalid
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.io.FileInputStream.readBytes(Native Method)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:263)
+INFO|5600/0||26-07-15 11:51:32|	at org.rzo.yajsw.io.TeeInputStream$Source.run(TeeInputStream.java:234)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+INFO|5600/0||26-07-15 11:51:32|	at java.base/java.lang.Thread.run(Thread.java:840)
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm:9.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.tree.analysis:9.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.commons:9.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.tree:9.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.objectweb.asm.util:9.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcpkix:1.78.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcprov:1.78.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: bcutil:1.78.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.admin:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.alert:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.api:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.aws:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.azure:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.backup:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.client:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.common:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.config:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.http:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.launcher:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.license:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.logging:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.mqtt:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.persistence-h2:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.security:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.server:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.sparkplug:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.chariot.system:2.8.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: License4J:4.7.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.aws:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.azure:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.mqtt:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.sparkplug:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.thread:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.cirruslink.common.utils:1.0.40
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-beanutils:1.10.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.collections:3.2.2
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-configuration2:2.9.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-fileupload:1.4.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.commons-io:2.18.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.lang3:3.5.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.logging:1.2.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.commons.text:1.11.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.guava.failureaccess:1.0.2
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.gson:2.8.9
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.guava:32.1.3.jre
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.httpcomponents.httpclient:4.5.13
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.httpcomponents.httpcore:4.4.13
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-annotations:2.13.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-core:2.13.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.core.jackson-databind:2.13.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.fasterxml.jackson.dataformat.jackson-dataformat-properties:2.13.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.fusesource.jansi:1.17.1
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: Java-WebSocket:1.6.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: javax.annotation-api:1.3.2
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-api:0.11.5
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-impl:0.11.5
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: io.jsonwebtoken.jjwt-jackson:0.11.5
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.jline:3.2.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: ch.qos.logback.classic:1.3.14
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: ch.qos.logback.core:1.3.14
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.aries.spifly.dynamic.bundle:1.3.7
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.bundlerepository:2.0.10
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.configadmin:1.9.16
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.eventadmin:1.5.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.fileinstall:3.6.4
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.api:3.0.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.bridge:4.2.18
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.jetty:4.2.30
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.servlet-api:1.2.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.http.sslfilter:1.2.8
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.scr:2.1.16
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.shell:1.4.3
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.felix.shell.remote:1.1.2
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: osgi.core:6.0.0.201403061837
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.service.log:1.4.0.201802012107
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.function:1.1.0.201802012106
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.promise:1.1.1.201810101357
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.osgi.util.pushstream:1.0.0.201802012107
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: com.google.protobuf:3.25.5
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.cache:2.0.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.config.core:2.0.0
+INFO|5600/0||26-07-15 11:51:32|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.config.ogdl:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.core:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.cipher:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.core:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.crypto.hash:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.event:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.apache.shiro.lang:2.0.0
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.slf4j.api:2.0.6
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.eclipse.tahu.core:1.0.16
+INFO|5600/0||26-07-15 11:51:33|Auto-deploy install: org.osgi.framework.BundleException: Bundle symbolic name and version are not unique: org.eclipse.tahu.host:1.0.16
+INFO|5600/0||26-07-15 11:51:36|[INFO] Started bridged http services
+INFO|5600/0||26-07-15 11:51:36|[WARN] Jetty not started (HTTP and HTTPS disabled)
+INFO|5600/0||26-07-15 11:51:37|[INFO] Started Jetty 9.4.57.v20241219 at port(s) HTTP:8080 on context path / [minThreads=8,maxThreads=200,acceptors=1,selectors=4]
+INFO|5600/0||26-07-15 11:51:38|11:51:38.658 [FelixStartLevel] INFO  c.c.c.license.impl.LicenseService - Chariot Deployment: Traditional
+INFO|5600/0||26-07-15 11:51:38|11:51:38.676 [FelixStartLevel] INFO  c.c.chariot.client.impl.Client - Binding Persistence Service [default]
