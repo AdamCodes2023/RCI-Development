@@ -1,0 +1,4 @@
+mkeras/EmbeddedSparkplugNode @ ^0.2.5
+adafruit/Adafruit MCP4728 @ ^1.0.9
+bblanchon/ArduinoJson @ ^7.4.2
+flowduino/ESPressio-Threads @ ^1.0.0
